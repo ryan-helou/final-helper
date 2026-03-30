@@ -278,6 +278,49 @@ body::before {
   margin-top: 0.3rem;
 }
 
+.study-task-list {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.study-task {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.2rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.study-task:hover { background: rgba(0,0,0,0.03); }
+
+.study-task .cb {
+  width: 16px; height: 16px;
+  border-width: 1.5px;
+  border-radius: 4px;
+}
+
+.study-task-text {
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+
+.study-task-text.done {
+  text-decoration: line-through;
+  color: var(--ink-faint);
+  opacity: 0.6;
+}
+
+.study-block-progress {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--sage);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
 .no-plan {
   text-align: center;
   padding: 1.5rem;
@@ -581,7 +624,6 @@ body::before {
 <main class="main-grid">
   <div class="left-col">
     <section class="card delay-1" id="dayViewCard"></section>
-    <section class="card delay-2" id="tomorrowCard"></section>
   </div>
   <div class="right-col">
     <section class="card delay-3" id="checklistCard"></section>
@@ -1190,10 +1232,23 @@ const CHECKLIST = {
 let checkedTopics = JSON.parse(localStorage.getItem('fh_checked') || '{}');
 let completedDays = JSON.parse(localStorage.getItem('fh_completed_days') || '{}');
 let openSubjects = JSON.parse(localStorage.getItem('fh_open_subjects') || '{}');
+let checkedDayTasks = JSON.parse(localStorage.getItem('fh_day_tasks') || '{}');
 
 function saveChecked() { localStorage.setItem('fh_checked', JSON.stringify(checkedTopics)); }
 function saveCompletedDays() { localStorage.setItem('fh_completed_days', JSON.stringify(completedDays)); }
 function saveOpenSubjects() { localStorage.setItem('fh_open_subjects', JSON.stringify(openSubjects)); }
+function saveDayTasks() { localStorage.setItem('fh_day_tasks', JSON.stringify(checkedDayTasks)); }
+
+function dayTaskKey(dayNum, blockIdx, taskIdx) {
+  return `d${dayNum}:b${blockIdx}:t${taskIdx}`;
+}
+
+function toggleDayTask(key) {
+  checkedDayTasks[key] = !checkedDayTasks[key];
+  if (!checkedDayTasks[key]) delete checkedDayTasks[key];
+  saveDayTasks();
+  renderDayView();
+}
 
 // ═══════════════════════════════════════════════════════
 // HELPERS
@@ -1364,19 +1419,67 @@ function renderDayPlanContent(plan, dateStr) {
   else if (isPast && isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--sage);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">DONE</span>';
   else if (isPast && !isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--terracotta-light);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">MISSED</span>';
 
-  let blocksHTML = plan.blocks.map(b => `
-    <div class="study-block ${b.cls}">
-      <div class="study-block-title">${esc(b.course)}</div>
-      <div class="study-block-time">${b.mins} min${b.sections ? ' · ' + esc(b.sections) : ''}</div>
-      <div class="study-block-topic">${esc(b.topic)}</div>
-      ${b.goals ? `<div class="study-block-goals">${esc(b.goals)}</div>` : ''}
-    </div>
-  `).join('');
+  let blocksHTML = plan.blocks.map((b, bi) => {
+    // Build task list from topic + goals
+    let tasks = [];
+    if (b.topic) tasks.push(b.topic);
+    if (b.goals) {
+      b.goals.split(', ').forEach(g => {
+        if (g && g !== b.topic) tasks.push(g);
+      });
+    }
+
+    let tasksDone = 0;
+    let tasksHTML = tasks.map((t, ti) => {
+      const key = dayTaskKey(plan.day, bi, ti);
+      const checked = checkedDayTasks[key];
+      if (checked) tasksDone++;
+      return `
+        <div class="study-task">
+          <div class="cb ${checked ? 'checked' : ''}" onclick="toggleDayTask('${key}')"></div>
+          <span class="study-task-text ${checked ? 'done' : ''}">${esc(t)}</span>
+        </div>
+      `;
+    }).join('');
+
+    const progressText = tasks.length > 0 ? `${tasksDone}/${tasks.length}` : '';
+
+    return `
+      <div class="study-block ${b.cls}">
+        <div style="display:flex;align-items:center;">
+          <div style="flex:1;">
+            <div class="study-block-title">${esc(b.course)}</div>
+            <div class="study-block-time">${b.mins} min${b.sections ? ' · ' + esc(b.sections) : ''}</div>
+          </div>
+          ${progressText ? `<span class="study-block-progress">${tasksDone === tasks.length && tasks.length > 0 ? '&#10003; ' : ''}${progressText}</span>` : ''}
+        </div>
+        <div class="study-task-list">${tasksHTML}</div>
+      </div>
+    `;
+  }).join('');
+
+  // Check if all tasks for this day are done
+  let allDayTasks = 0, allDayDone = 0;
+  plan.blocks.forEach((b, bi) => {
+    let tasks = [];
+    if (b.topic) tasks.push(b.topic);
+    if (b.goals) b.goals.split(', ').forEach(g => { if (g && g !== b.topic) tasks.push(g); });
+    tasks.forEach((_, ti) => {
+      allDayTasks++;
+      if (checkedDayTasks[dayTaskKey(plan.day, bi, ti)]) allDayDone++;
+    });
+  });
 
   let noteHTML = plan.note ? `<div class="day-note">${esc(plan.note)}</div>` : '';
 
   let markDoneHTML = '';
-  if ((isToday || isPast) && !isDone) {
+  const autoComplete = allDayTasks > 0 && allDayDone === allDayTasks;
+  if (autoComplete && !isDone) {
+    // Auto-mark complete if all tasks checked
+    completedDays[dateStr] = true;
+    saveCompletedDays();
+    markDoneHTML = `<button class="btn" style="margin-top:0.8rem;width:100%;background:var(--sage-bg);color:var(--sage);cursor:pointer;border:1.5px solid var(--sage-light);" onclick="unmarkDayDone('${dateStr}')">All done! (undo)</button>`;
+  } else if ((isToday || isPast) && !isDone) {
     markDoneHTML = `<button class="btn btn-sage" style="margin-top:0.8rem;width:100%;" onclick="markDayDone('${dateStr}')">Mark as completed</button>`;
   } else if (isDone) {
     markDoneHTML = `<button class="btn" style="margin-top:0.8rem;width:100%;background:var(--cream);color:var(--ink-light);cursor:pointer;" onclick="unmarkDayDone('${dateStr}')">Undo completed</button>`;
@@ -1427,29 +1530,10 @@ function renderDayView() {
   `;
 }
 
-function renderTomorrowCard() {
-  const el = document.getElementById('tomorrowCard');
-  const tmrw = tomorrow();
-  const plan = getPlanForDate(tmrw);
-
-  if (!plan) {
-    const lastDay = PLAN[PLAN.length - 1].date;
-    let msg = tmrw > lastDay ? 'No more study days scheduled!' : 'No study scheduled for tomorrow.';
-    el.innerHTML = `<div class="card-label">Tomorrow</div><div class="no-plan">${msg}</div>`;
-    return;
-  }
-
-  el.innerHTML = `
-    <div class="card-label">Up Next — Tomorrow</div>
-    ${renderDayPlanContent(plan, tmrw)}
-  `;
-}
-
 function markDayDone(dateStr) {
   completedDays[dateStr] = true;
   saveCompletedDays();
   renderDayView();
-  renderTomorrowCard();
   renderStatusBanner();
 }
 
@@ -1457,7 +1541,6 @@ function unmarkDayDone(dateStr) {
   delete completedDays[dateStr];
   saveCompletedDays();
   renderDayView();
-  renderTomorrowCard();
   renderStatusBanner();
 }
 
@@ -1548,7 +1631,6 @@ function toggleSubject(courseName) {
 // ═══════════════════════════════════════════════════════
 renderStatusBanner();
 renderDayView();
-renderTomorrowCard();
 renderChecklist();
 
 // Keyboard navigation
