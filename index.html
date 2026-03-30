@@ -1410,7 +1410,6 @@ function renderDayPlanContent(plan, dateStr) {
   const isTmrw = dateStr === tomorrow();
   const isPast = dateStr < today();
   const isDone = completedDays[dateStr];
-  const totalMins = plan.blocks.reduce((s, b) => s + b.mins, 0);
   const isExamDay = plan.note && plan.note.includes('EXAM TODAY');
 
   let tagHTML = '';
@@ -1449,7 +1448,7 @@ function renderDayPlanContent(plan, dateStr) {
         <div style="display:flex;align-items:center;">
           <div style="flex:1;">
             <div class="study-block-title">${esc(b.course)}</div>
-            <div class="study-block-time">${b.mins} min${b.sections ? ' · ' + esc(b.sections) : ''}</div>
+            ${b.sections ? `<div class="study-block-time">${esc(b.sections)}</div>` : ''}
           </div>
           ${progressText ? `<span class="study-block-progress">${tasksDone === tasks.length && tasks.length > 0 ? '&#10003; ' : ''}${progressText}</span>` : ''}
         </div>
@@ -1488,7 +1487,7 @@ function renderDayPlanContent(plan, dateStr) {
   return `
     <div class="day-plan-header">
       <h3 class="card-title">${esc(plan.label)}${tagHTML}</h3>
-      <span class="day-number ${isExamDay ? 'exam-day' : ''}">Day ${plan.day} · ${totalMins} min</span>
+      <span class="day-number ${isExamDay ? 'exam-day' : ''}">Day ${plan.day}</span>
     </div>
     ${noteHTML}
     ${blocksHTML}
