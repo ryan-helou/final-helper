@@ -642,241 +642,142 @@ const EXAMS = [
 ];
 
 const PLAN = [
-  {
-    day: 1, date: '2026-03-30', label: 'Sunday, March 30',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Basic Circuit Concepts (Part 1)', sections: 'Ch. 2.1–2.3', goals: 'Voltage, current, resistance fundamentals' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Algorithm Analysis', sections: 'Ch. 4.1–4.2', goals: 'Big O notation introduction, complexity basics' },
-    ]
-  },
-  {
-    day: 2, date: '2026-03-31', label: 'Monday, March 31',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Intro to Theory of Computation + FSA Basics', sections: 'Ch. 1–2', goals: 'Automata overview, DFA fundamentals' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Sustainable Development Overview', sections: 'Week 1 notes', goals: 'Course concepts introduction' },
-    ]
-  },
-  {
-    day: 3, date: '2026-04-01', label: 'Tuesday, April 1',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Basic Circuit Concepts (Part 2) + Nodal Analysis (Part 1)', sections: 'Ch. 2.4–2.7, 3.1–3.2', goals: "Ohm's law, Kirchhoff's laws, node voltage method" },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Recursion + Stacks & Queues', sections: 'Ch. 5.1–5.3, 3.1, 6.1–6.2', goals: 'Recursive algorithms, basic data structures' },
-    ]
-  },
-  {
-    day: 4, date: '2026-04-02', label: 'Wednesday, April 2',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Regular Expressions, DFAs, NFAs', sections: 'Ch. 2–3', goals: 'NFA to DFA conversion, regex basics' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Environmental Issues + Global Warming Intro', sections: 'Week 3, 5 notes', goals: 'Environmental context, climate concepts' },
-    ]
-  },
-  {
-    day: 5, date: '2026-04-03', label: 'Thursday, April 3',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Nodal Analysis (Part 2) + Mesh Analysis', sections: 'Ch. 3.2–3.5', goals: 'Complete nodal/mesh analysis techniques' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Linked Lists (Part 1)', sections: 'Ch. 3.2–3.3', goals: 'Node insertion, deletion, basic operations' },
-    ]
-  },
-  {
-    day: 6, date: '2026-04-04', label: 'Friday, April 4',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Regular Grammars, Closure Properties, Pumping Lemma', sections: 'Ch. 3.3–4.3', goals: 'Closure properties, pumping lemma proofs' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'LCA Introduction + Risk Assessment', sections: 'Week 8, 10 notes', goals: 'LCA methodology, risk concepts' },
-    ]
-  },
-  {
-    day: 7, date: '2026-04-05', label: 'Saturday, April 5',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Thevenin & Norton Equivalents + Inductors/Capacitors', sections: 'Ch. 3.6–3.7, 4.1', goals: 'Circuit simplification, inductor/capacitor behavior' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Linked Lists (Part 2) + Trees (Part 1)', sections: 'Ch. 3.4, 8.1–8.2', goals: 'Doubly linked lists, tree traversal basics' },
-    ]
-  },
-  {
-    day: 8, date: '2026-04-06', label: 'Sunday, April 6',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Context-Free Grammars + Simplification', sections: 'Ch. 5–6', goals: 'CFG fundamentals, Chomsky normal form' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Review Week 1–5 + Case Studies', sections: 'All notes', goals: 'Concept reinforcement, case study mastery' },
-    ]
-  },
-  {
-    day: 9, date: '2026-04-07', label: 'Monday, April 7',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Complex Numbers + Sinusoidal Sources (Part 1)', sections: 'Appendix A, Ch. 4.2–4.4', goals: 'Complex number arithmetic, AC circuit intro' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Trees (Part 2) – BSTs & Balanced Trees', sections: 'Ch. 8.3–8.4', goals: 'Self-balancing trees, tree rotations' },
-    ]
-  },
-  {
-    day: 10, date: '2026-04-08', label: 'Tuesday, April 8',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Push-Down Automata (Intro + Design)', sections: 'Ch. 7.1–7.3', goals: 'PDA fundamentals, DPA vs NPDA' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Practice Exam 1', sections: 'Timed test', goals: 'Exam familiarization' },
-    ]
-  },
-  {
-    day: 11, date: '2026-04-09', label: 'Wednesday, April 9',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Sinusoidal Sources & Phasors (Part 2)', sections: 'Ch. 4.4–4.6', goals: 'Impedance, phasor diagrams, AC analysis' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Heaps & Priority Queues', sections: 'Ch. 9.1–9.3', goals: 'Min/max heaps, heap operations' },
-    ]
-  },
-  {
-    day: 12, date: '2026-04-10', label: 'Thursday, April 10',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Closure Properties of CFLs + Pumping Lemma for CFLs', sections: 'Ch. 8–8.1', goals: 'CFL closure properties, CFL pumping lemma proofs' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Practice Exam 2', sections: 'Timed test', goals: 'Exam simulation' },
-    ]
-  },
-  {
-    day: 13, date: '2026-04-11', label: 'Friday, April 11',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'AC Nodal & Mesh Analysis + Complex Power', sections: 'Ch. 4.4–4.6, 7.1–7.3', goals: 'AC circuit analysis, power factor, reactive power' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Hash Tables & Hashing', sections: 'Ch. 10.1–10.3', goals: 'Hash functions, collision resolution strategies' },
-    ]
-  },
-  {
-    day: 14, date: '2026-04-12', label: 'Saturday, April 12',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Turing Machines (Intro + Design)', sections: 'Ch. 9–9.3', goals: 'TM fundamentals, TM design basics' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Full Practice Exam 3', sections: 'Complete timed test', goals: 'Full exam readiness' },
-    ]
-  },
-  {
-    day: 15, date: '2026-04-13', label: 'Sunday, April 13',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Transformers & Impedance Matching', sections: 'Ch. 7.4', goals: 'Ideal transformer analysis, impedance matching' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Search Trees (BST, AVL, Red-Black)', sections: 'Ch. 11.1–11.3', goals: 'Tree balancing, search tree performance' },
-    ]
-  },
-  {
-    day: 16, date: '2026-04-14', label: 'Monday, April 14',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Turing Machines – Combining & Variations', sections: 'Ch. 9.3–10', goals: 'Multi-tape TMs, non-deterministic TMs' },
-      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Final Exam Prep – Full Review', sections: 'All weeks', goals: 'Complete course mastery' },
-    ]
-  },
-  {
-    day: 17, date: '2026-04-15', label: 'Tuesday, April 15',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Three-Phase Circuits (Part 1)', sections: 'Ch. 7.5', goals: 'Balanced three-phase fundamentals' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Sorting Algorithms (Part 1)', sections: 'Ch. 12.1–12.2', goals: 'Bubble sort, merge sort, insertion sort' },
-    ]
-  },
-  {
-    day: 18, date: '2026-04-16', label: 'Wednesday, April 16',
-    note: 'COMP 352 FINAL EXAM TOMORROW',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 105, topic: 'Decidability & Undecidability', sections: 'Ch. 10.4–12.1', goals: 'Halting problem, undecidable languages' },
-      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'INTENSIVE FINAL REVIEW', sections: 'All chapters 3–14', goals: 'Comprehensive exam preparation' },
-    ]
-  },
-  {
-    day: 19, date: '2026-04-17', label: 'Thursday, April 17',
-    note: 'COMP 352 FINAL EXAM TODAY',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Three-Phase Circuits (Part 2)', sections: 'Ch. 7.5', goals: 'Three-phase power calculations, balanced systems' },
-      { course: 'COMP 335', cls: 'comp335', mins: 105, topic: "Turing's Thesis & Computational Universality", sections: 'Ch. 10', goals: 'Universal Turing machine concept' },
-    ]
-  },
-  {
-    day: 20, date: '2026-04-18', label: 'Friday, April 18',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'PRACTICE PROBLEM SET 1 – Ch. 2, 3, 7', sections: 'Problem solving', goals: 'Practical application of circuits and power' },
-    ]
-  },
-  {
-    day: 21, date: '2026-04-19', label: 'Saturday, April 19',
-    note: 'ENGR 202 FINAL EXAM TOMORROW',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 140, topic: 'Problem-Solving Session – All Topics', sections: 'Ch. 1–12 combined', goals: 'Diverse problem types, proof techniques' },
-      { course: 'ENGR 202', cls: 'engr', mins: 70, topic: 'FINAL EXAM PREP – Complete Review', sections: 'All weeks 1–12', goals: 'Comprehensive course mastery' },
-    ]
-  },
-  {
-    day: 22, date: '2026-04-20', label: 'Sunday, April 20',
-    note: 'ENGR 202 FINAL EXAM TODAY',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'PRACTICE PROBLEM SET 2 – Ch. 4, 7.1–7.5', sections: 'AC analysis and power calculations', goals: 'AC circuit mastery through practice' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Mid-course refresher – Regular Languages & Automata', sections: 'Ch. 1–4 summary', goals: 'Intermediate concepts review' },
-    ]
-  },
-  {
-    day: 23, date: '2026-04-21', label: 'Monday, April 21',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Sinusoidal/AC Deep Dive', sections: 'Ch. 4.2–4.6', goals: 'AC fundamentals mastery' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Regular Languages & Automata Mastery', sections: 'Ch. 2–4', goals: 'FSA/DFA/NFA equivalence proofs' },
-    ]
-  },
-  {
-    day: 24, date: '2026-04-22', label: 'Tuesday, April 22',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Power Analysis Deep Dive', sections: 'Ch. 7.1–7.3', goals: 'Real/reactive/apparent power mastery' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Context-Free Languages Mastery', sections: 'Ch. 5–8', goals: 'CFG design, PDA design, CFL properties' },
-    ]
-  },
-  {
-    day: 25, date: '2026-04-23', label: 'Wednesday, April 23',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Transformers & Three-Phase Combined', sections: 'Ch. 7.4–7.5', goals: 'Transformer equations, 3-phase power calculations' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Turing Machines Mastery', sections: 'Ch. 9–10', goals: 'Multi-tape TMs, decidability proofs' },
-    ]
-  },
-  {
-    day: 26, date: '2026-04-24', label: 'Thursday, April 24',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Magnetic Circuits & Energy Conversion', sections: 'Ch. 18.1–18.5', goals: 'Magnetic force, torque, energy relationships' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Decidability & Halting Problem Deep Dive', sections: 'Ch. 10.4–12.1', goals: 'Undecidable language proofs, complexity classes' },
-    ]
-  },
-  {
-    day: 27, date: '2026-04-25', label: 'Friday, April 25',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Electric Machines – Motors & Generators', sections: 'Ch. 19–20', goals: 'Motor/generator equations, operation principles' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Final Practice Problems – All Topics', sections: 'Ch. 1–12', goals: 'Problem variety, confidence building' },
-    ]
-  },
-  {
-    day: 28, date: '2026-04-26', label: 'Saturday, April 26',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'FULL EXAM SIMULATION – Practice Exam 1', sections: 'Ch. 2–4, 7, 18–20 (timed)', goals: 'Exam-paced comprehensive review' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Problem-Solving Session – Weak Areas', sections: 'Focus on difficult topics', goals: 'Targeted gap-filling' },
-    ]
-  },
-  {
-    day: 29, date: '2026-04-27', label: 'Sunday, April 27',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'FULL EXAM SIMULATION – Practice Exam 2', sections: 'Ch. 2–4, 7, 18–20 (timed)', goals: 'Second comprehensive practice exam' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Final Review – Identify & Fix Gaps', sections: 'Weak areas summary', goals: 'Targeted improvement' },
-    ]
-  },
-  {
-    day: 30, date: '2026-04-28', label: 'Monday, April 28',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Comprehensive Review & Problem Solving', sections: 'Ch. 2–4, 7, 18–20', goals: 'Last-minute clarifications, practice' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Final Practice Problems – All Topics', sections: 'Ch. 1–12', goals: 'Confidence building, concept reinforcement' },
-    ]
-  },
-  {
-    day: 31, date: '2026-04-29', label: 'Tuesday, April 29',
-    note: 'COMP 335 FINAL EXAM day after tomorrow',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Light Review – Formulas & Key Concepts', sections: 'Ch. 2–4, 7, 18–20', goals: 'Formula sheet preparation, concept review' },
-      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'FINAL REVIEW BEFORE EXAM', sections: 'All topics, handwritten notes', goals: 'Final confidence check' },
-    ]
-  },
-  {
-    day: 32, date: '2026-04-30', label: 'Wednesday, April 30',
-    note: 'ELEC 275 FINAL EXAM TODAY',
-    blocks: [
-      { course: 'ELEC 275', cls: 'elec', mins: 210, topic: 'FINAL EXAM DAY', sections: '', goals: 'Execute with confidence' },
-    ]
-  },
-  {
-    day: 33, date: '2026-05-01', label: 'Thursday, May 1',
-    note: 'COMP 335 FINAL EXAM TODAY',
-    blocks: [
-      { course: 'COMP 335', cls: 'comp335', mins: 210, topic: 'FINAL EXAM DAY', sections: '', goals: 'Execute with confidence' },
-    ]
-  },
+  { day: 1, date: '2026-03-30', label: 'Sunday, March 30', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2.1–2.3', topic: 'Basic Circuit Concepts', refs: [0] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 4.1–4.2', topic: 'Algorithm Analysis', refs: [0] },
+  ]},
+  { day: 2, date: '2026-03-31', label: 'Monday, March 31', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–2', topic: 'Intro + FSA Basics', refs: [0, 1] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'Week 1', topic: 'Sustainable Development Overview', refs: [0] },
+  ]},
+  { day: 3, date: '2026-04-01', label: 'Tuesday, April 1', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2.4–2.7, 3.1–3.2', topic: 'Circuits + Nodal Analysis', refs: [0, 1] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 5.1–5.3, 3.1, 6.1–6.2', topic: 'Recursion + Stacks & Queues', refs: [1, 2] },
+  ]},
+  { day: 4, date: '2026-04-02', label: 'Wednesday, April 2', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 2–3', topic: 'Regex, DFAs, NFAs', refs: [1, 2, 3] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'Weeks 3, 5', topic: 'Environmental Issues + Global Warming', refs: [1, 2] },
+  ]},
+  { day: 5, date: '2026-04-03', label: 'Thursday, April 3', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 3.2–3.5', topic: 'Nodal + Mesh Analysis', refs: [1] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 3.2–3.3', topic: 'Linked Lists', refs: [3] },
+  ]},
+  { day: 6, date: '2026-04-04', label: 'Friday, April 4', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 3.3–4.3', topic: 'Grammars, Closure, Pumping Lemma', refs: [3, 4, 5] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'Weeks 8, 10', topic: 'LCA + Risk Assessment', refs: [3, 4] },
+  ]},
+  { day: 7, date: '2026-04-05', label: 'Saturday, April 5', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 3.6–3.7, 4.1', topic: 'Thevenin/Norton + L/C', refs: [2, 3] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 3.4, 8.1–8.2', topic: 'Linked Lists + Trees', refs: [3, 4] },
+  ]},
+  { day: 8, date: '2026-04-06', label: 'Sunday, April 6', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 5–6', topic: 'CFGs + Simplification', refs: [6, 7] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'Weeks 1–5 review', topic: 'Review + Case Studies', refs: [0, 1, 2] },
+  ]},
+  { day: 9, date: '2026-04-07', label: 'Monday, April 7', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'App. A, Ch. 4.2–4.4', topic: 'Complex Numbers + Sinusoidal', refs: [4, 5] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 8.3–8.4', topic: 'BSTs & Balanced Trees', refs: [4] },
+  ]},
+  { day: 10, date: '2026-04-08', label: 'Tuesday, April 8', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 7.1–7.3', topic: 'Push-Down Automata', refs: [9] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'Practice Exam 1', topic: 'Timed Practice', tasks: ['Complete practice exam 1'] },
+  ]},
+  { day: 11, date: '2026-04-09', label: 'Wednesday, April 9', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4.4–4.6', topic: 'Phasors & AC Analysis', refs: [6] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 9.1–9.3', topic: 'Heaps & Priority Queues', refs: [5] },
+  ]},
+  { day: 12, date: '2026-04-10', label: 'Thursday, April 10', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 8–8.1', topic: 'CFL Closure + Pumping Lemma', refs: [10] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'Practice Exam 2', topic: 'Timed Practice', tasks: ['Complete practice exam 2'] },
+  ]},
+  { day: 13, date: '2026-04-11', label: 'Friday, April 11', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4.4–4.6, 7.1–7.3', topic: 'AC Analysis + Complex Power', refs: [6, 7] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 10.1–10.3', topic: 'Hash Tables', refs: [6] },
+  ]},
+  { day: 14, date: '2026-04-12', label: 'Saturday, April 12', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 9–9.3', topic: 'Turing Machines', refs: [11] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'Practice Exam 3', topic: 'Full Practice Exam', tasks: ['Complete full practice exam 3'] },
+  ]},
+  { day: 15, date: '2026-04-13', label: 'Sunday, April 13', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.4', topic: 'Transformers & Impedance Matching', refs: [8] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 11.1–11.3', topic: 'Search Trees (AVL, Red-Black)', refs: [7] },
+  ]},
+  { day: 16, date: '2026-04-14', label: 'Monday, April 14', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 9.3–10', topic: 'Combining TMs & Variations', refs: [12] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'All weeks', topic: 'Full Course Review', refs: [0, 1, 2, 3, 4, 5] },
+  ]},
+  { day: 17, date: '2026-04-15', label: 'Tuesday, April 15', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.5', topic: 'Three-Phase Circuits', refs: [9] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 12.1–12.2', topic: 'Sorting Algorithms', refs: [8] },
+  ]},
+  { day: 18, date: '2026-04-16', label: 'Wednesday, April 16',
+    note: 'COMP 352 FINAL EXAM TOMORROW', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 10.4–12.1', topic: 'Decidability & Undecidability', refs: [13] },
+    { course: 'COMP 352', cls: 'comp352', sections: 'All chapters', topic: 'Intensive Final Review', tasks: ['Review all data structures', 'Review all algorithms', 'Practice problem set'] },
+  ]},
+  { day: 19, date: '2026-04-17', label: 'Thursday, April 17',
+    note: 'COMP 352 FINAL EXAM TODAY', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.5', topic: 'Three-Phase Circuits (cont.)', refs: [9] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 10', topic: "Turing's Thesis", refs: [12] },
+  ]},
+  { day: 20, date: '2026-04-18', label: 'Friday, April 18', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2, 3, 7', topic: 'Practice Problem Set 1', tasks: ['Practice DC circuit problems', 'Practice power problems'] },
+  ]},
+  { day: 21, date: '2026-04-19', label: 'Saturday, April 19',
+    note: 'ENGR 202 FINAL EXAM TOMORROW', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–12', topic: 'Full Problem-Solving Session', tasks: ['Mixed problem types', 'Proof technique practice'] },
+    { course: 'ENGR 202', cls: 'engr', sections: 'All weeks', topic: 'Final Exam Prep', tasks: ['Complete course review', 'Review case studies'] },
+  ]},
+  { day: 22, date: '2026-04-20', label: 'Sunday, April 20',
+    note: 'ENGR 202 FINAL EXAM TODAY', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4, 7.1–7.5', topic: 'Practice Problem Set 2', tasks: ['Practice AC analysis problems', 'Practice power calculations'] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–4', topic: 'Regular Languages Review', refs: [0, 1, 2, 3, 4, 5] },
+  ]},
+  { day: 23, date: '2026-04-21', label: 'Monday, April 21', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4.2–4.6', topic: 'AC Deep Dive', refs: [5, 6] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 2–4', topic: 'Automata Mastery', refs: [1, 2, 3, 4, 5] },
+  ]},
+  { day: 24, date: '2026-04-22', label: 'Tuesday, April 22', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.1–7.3', topic: 'Power Analysis Deep Dive', refs: [7] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 5–8', topic: 'Context-Free Languages Mastery', refs: [6, 7, 9, 10] },
+  ]},
+  { day: 25, date: '2026-04-23', label: 'Wednesday, April 23', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.4–7.5', topic: 'Transformers + Three-Phase', refs: [8, 9] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 9–10', topic: 'Turing Machines Mastery', refs: [11, 12] },
+  ]},
+  { day: 26, date: '2026-04-24', label: 'Thursday, April 24', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 18.1–18.5', topic: 'Magnetic Circuits', refs: [10] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 10.4–12.1', topic: 'Decidability Deep Dive', refs: [13] },
+  ]},
+  { day: 27, date: '2026-04-25', label: 'Friday, April 25', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 19–20', topic: 'Electric Machines', refs: [11] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–12', topic: 'All Topics Practice', tasks: ['Mixed problem set', 'Confidence building'] },
+  ]},
+  { day: 28, date: '2026-04-26', label: 'Saturday, April 26', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Practice Exam 1 (timed)', tasks: ['Complete full timed practice exam'] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Weak areas', topic: 'Targeted Problem-Solving', tasks: ['Identify and fix weak areas'] },
+  ]},
+  { day: 29, date: '2026-04-27', label: 'Sunday, April 27', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Practice Exam 2 (timed)', tasks: ['Complete full timed practice exam'] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Weak areas', topic: 'Final Gap Review', tasks: ['Review and fix remaining gaps'] },
+  ]},
+  { day: 30, date: '2026-04-28', label: 'Monday, April 28', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Review + Problem Solving', tasks: ['Practice selected problems', 'Clarify remaining questions'] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–12', topic: 'Final Practice', tasks: ['Final mixed problem set'] },
+  ]},
+  { day: 31, date: '2026-04-29', label: 'Tuesday, April 29',
+    note: 'COMP 335 FINAL EXAM day after tomorrow', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Light Review + Formulas', tasks: ['Prepare formula sheet', 'Review key concepts'] },
+    { course: 'COMP 335', cls: 'comp335', sections: 'All topics', topic: 'Final Review', tasks: ['Final review of handwritten notes', 'Confidence check'] },
+  ]},
+  { day: 32, date: '2026-04-30', label: 'Wednesday, April 30',
+    note: 'ELEC 275 FINAL EXAM TODAY', blocks: [
+    { course: 'ELEC 275', cls: 'elec', sections: '', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
+  ]},
+  { day: 33, date: '2026-05-01', label: 'Thursday, May 1',
+    note: 'COMP 335 FINAL EXAM TODAY', blocks: [
+    { course: 'COMP 335', cls: 'comp335', sections: '', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
+  ]},
 ];
 
 // ═══════════════════════════════════════════════════════
@@ -1250,6 +1151,14 @@ function toggleDayTask(key) {
   renderDayView();
 }
 
+function toggleTopicFromDay(key) {
+  checkedTopics[key] = !checkedTopics[key];
+  if (!checkedTopics[key]) delete checkedTopics[key];
+  saveChecked();
+  renderDayView();
+  renderChecklist();
+}
+
 // ═══════════════════════════════════════════════════════
 // HELPERS
 // ═══════════════════════════════════════════════════════
@@ -1418,39 +1327,55 @@ function renderDayPlanContent(plan, dateStr) {
   else if (isPast && isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--sage);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">DONE</span>';
   else if (isPast && !isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--terracotta-light);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">MISSED</span>';
 
-  let blocksHTML = plan.blocks.map((b, bi) => {
-    // Build task list from topic + goals
-    let tasks = [];
-    if (b.topic) tasks.push(b.topic);
-    if (b.goals) {
-      b.goals.split(', ').forEach(g => {
-        if (g && g !== b.topic) tasks.push(g);
+  // Helper: get tasks for a block (from refs or manual tasks)
+  function getBlockTasks(b) {
+    if (b.refs && CHECKLIST[b.course]) {
+      // Pull checklist items from referenced groups
+      let items = [];
+      b.refs.forEach(gi => {
+        const group = CHECKLIST[b.course].groups[gi];
+        if (group) {
+          group.items.forEach((item, ii) => {
+            items.push({ text: item, key: topicKey(b.course, gi, ii), isRef: true });
+          });
+        }
       });
+      return items;
+    } else if (b.tasks) {
+      // Manual tasks for practice/exam days
+      return b.tasks.map((t, ti) => ({ text: t, key: dayTaskKey(plan.day, 'manual', b.course + ti), isRef: false }));
     }
+    return [];
+  }
 
+  let blocksHTML = plan.blocks.map((b, bi) => {
+    const items = getBlockTasks(b);
     let tasksDone = 0;
-    let tasksHTML = tasks.map((t, ti) => {
-      const key = dayTaskKey(plan.day, bi, ti);
-      const checked = checkedDayTasks[key];
+
+    let tasksHTML = items.map(item => {
+      const checked = item.isRef ? checkedTopics[item.key] : checkedDayTasks[item.key];
       if (checked) tasksDone++;
+      const toggleFn = item.isRef ? `toggleTopicFromDay('${item.key}')` : `toggleDayTask('${item.key}')`;
       return `
         <div class="study-task">
-          <div class="cb ${checked ? 'checked' : ''}" onclick="toggleDayTask('${key}')"></div>
-          <span class="study-task-text ${checked ? 'done' : ''}">${esc(t)}</span>
+          <div class="cb ${checked ? 'checked' : ''}" onclick="${toggleFn}"></div>
+          <span class="study-task-text ${checked ? 'done' : ''}">${esc(item.text)}</span>
         </div>
       `;
     }).join('');
 
-    const progressText = tasks.length > 0 ? `${tasksDone}/${tasks.length}` : '';
+    const progressText = items.length > 0 ? `${tasksDone}/${items.length}` : '';
+    const sectionLabel = b.sections ? `${b.sections}` : '';
+    const topicLabel = b.topic ? ` (${b.topic})` : '';
 
     return `
       <div class="study-block ${b.cls}">
         <div style="display:flex;align-items:center;">
           <div style="flex:1;">
             <div class="study-block-title">${esc(b.course)}</div>
-            ${b.sections ? `<div class="study-block-time">${esc(b.sections)}</div>` : ''}
+            ${sectionLabel ? `<div class="study-block-time">${esc(sectionLabel + topicLabel)}</div>` : (b.topic ? `<div class="study-block-time">${esc(b.topic)}</div>` : '')}
           </div>
-          ${progressText ? `<span class="study-block-progress">${tasksDone === tasks.length && tasks.length > 0 ? '&#10003; ' : ''}${progressText}</span>` : ''}
+          ${progressText ? `<span class="study-block-progress">${tasksDone === items.length && items.length > 0 ? '&#10003; ' : ''}${progressText}</span>` : ''}
         </div>
         <div class="study-task-list">${tasksHTML}</div>
       </div>
@@ -1460,12 +1385,11 @@ function renderDayPlanContent(plan, dateStr) {
   // Check if all tasks for this day are done
   let allDayTasks = 0, allDayDone = 0;
   plan.blocks.forEach((b, bi) => {
-    let tasks = [];
-    if (b.topic) tasks.push(b.topic);
-    if (b.goals) b.goals.split(', ').forEach(g => { if (g && g !== b.topic) tasks.push(g); });
-    tasks.forEach((_, ti) => {
+    const items = getBlockTasks(b);
+    items.forEach(item => {
       allDayTasks++;
-      if (checkedDayTasks[dayTaskKey(plan.day, bi, ti)]) allDayDone++;
+      const checked = item.isRef ? checkedTopics[item.key] : checkedDayTasks[item.key];
+      if (checked) allDayDone++;
     });
   });
 
