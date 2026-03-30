@@ -1151,10 +1151,22 @@ function toggleDayTask(key) {
   renderDayView();
 }
 
-function toggleTopicFromDay(key) {
-  checkedTopics[key] = !checkedTopics[key];
-  if (!checkedTopics[key]) delete checkedTopics[key];
-  saveChecked();
+function toggleGroupFromDay(key, course, groupIdx) {
+  const nowChecked = !checkedDayTasks[key];
+  // Toggle the group in day view
+  checkedDayTasks[key] = nowChecked;
+  if (!nowChecked) delete checkedDayTasks[key];
+  saveDayTasks();
+  // Also check/uncheck all individual topics in that group for the overall checklist
+  const group = CHECKLIST[course].groups[groupIdx];
+  if (group) {
+    group.items.forEach((_, ii) => {
+      const tk = topicKey(course, groupIdx, ii);
+      if (nowChecked) checkedTopics[tk] = true;
+      else delete checkedTopics[tk];
+    });
+    saveChecked();
+  }
   renderDayView();
   renderChecklist();
 }
@@ -1330,19 +1342,13 @@ function renderDayPlanContent(plan, dateStr) {
   // Helper: get tasks for a block (from refs or manual tasks)
   function getBlockTasks(b) {
     if (b.refs && CHECKLIST[b.course]) {
-      // Pull checklist items from referenced groups
-      let items = [];
-      b.refs.forEach(gi => {
+      // Show checklist group titles (chapter/week numbers) as checkable items
+      return b.refs.map(gi => {
         const group = CHECKLIST[b.course].groups[gi];
-        if (group) {
-          group.items.forEach((item, ii) => {
-            items.push({ text: item, key: topicKey(b.course, gi, ii), isRef: true });
-          });
-        }
-      });
-      return items;
+        if (!group) return null;
+        return { text: group.title, key: 'group:' + b.course + ':' + gi, isRef: true, groupIdx: gi, course: b.course };
+      }).filter(Boolean);
     } else if (b.tasks) {
-      // Manual tasks for practice/exam days
       return b.tasks.map((t, ti) => ({ text: t, key: dayTaskKey(plan.day, 'manual', b.course + ti), isRef: false }));
     }
     return [];
@@ -1353,9 +1359,11 @@ function renderDayPlanContent(plan, dateStr) {
     let tasksDone = 0;
 
     let tasksHTML = items.map(item => {
-      const checked = item.isRef ? checkedTopics[item.key] : checkedDayTasks[item.key];
+      const checked = item.isRef ? checkedDayTasks[item.key] : checkedDayTasks[item.key];
       if (checked) tasksDone++;
-      const toggleFn = item.isRef ? `toggleTopicFromDay('${item.key}')` : `toggleDayTask('${item.key}')`;
+      const toggleFn = item.isRef
+        ? `toggleGroupFromDay('${item.key}', '${item.course}', ${item.groupIdx})`
+        : `toggleDayTask('${item.key}')`;
       return `
         <div class="study-task">
           <div class="cb ${checked ? 'checked' : ''}" onclick="${toggleFn}"></div>
@@ -1388,8 +1396,7 @@ function renderDayPlanContent(plan, dateStr) {
     const items = getBlockTasks(b);
     items.forEach(item => {
       allDayTasks++;
-      const checked = item.isRef ? checkedTopics[item.key] : checkedDayTasks[item.key];
-      if (checked) allDayDone++;
+      if (checkedDayTasks[item.key]) allDayDone++;
     });
   });
 
