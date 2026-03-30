@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5f0e8;
+  --cream-dark: #ebe4d6;
+  --ink: #2c2825;
+  --ink-light: #6b6460;
+  --ink-faint: #9e9590;
+  --terracotta: #c4654a;
+  --terracotta-light: #d4846e;
+  --terracotta-bg: #fdf0ec;
+  --sage: #7a9e7e;
+  --sage-light: #a8c5ab;
+  --sage-bg: #eef4ee;
+  --warm-white: #faf8f4;
+  --border: #d9d0c3;
+  --shadow: rgba(44, 40, 37, 0.08);
+  --red: #c4654a;
+  --amber: #c49a4a;
+  --amber-bg: #fdf6ec;
+  --blue: #4a7ec4;
+  --blue-bg: #ecf2fd;
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ── Header ── */
+.header {
+  padding: 2.5rem 2rem 0.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.header-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.header .date {
+  font-size: 0.82rem;
+  color: var(--ink-light);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.header .motivator {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  color: var(--terracotta);
+  font-size: 0.95rem;
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.3s forwards;
+}
+
+/* ── Status Banner ── */
+.status-banner {
+  max-width: 1200px;
+  margin: 1rem auto 0;
+  padding: 0 2rem;
+}
+
+.status-inner {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1.5px solid;
+}
+
+.status-pill.on-track { background: var(--sage-bg); border-color: var(--sage-light); color: #4a7a4e; }
+.status-pill.behind { background: var(--terracotta-bg); border-color: var(--terracotta-light); color: var(--terracotta); }
+.status-pill.ahead { background: var(--blue-bg); border-color: #a0bfe0; color: var(--blue); }
+
+.status-pill .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+}
+.status-pill.on-track .dot { background: var(--sage); }
+.status-pill.behind .dot { background: var(--terracotta); animation: pulse 1.5s infinite; }
+.status-pill.ahead .dot { background: var(--blue); }
+
+.exam-pills {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.exam-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 99px;
+  background: var(--warm-white);
+  border: 1.5px solid var(--border);
+  color: var(--ink-light);
+}
+
+.exam-pill.imminent {
+  background: var(--terracotta-bg);
+  border-color: var(--terracotta-light);
+  color: var(--terracotta);
+}
+
+.exam-pill.done-exam {
+  background: var(--sage-bg);
+  border-color: var(--sage-light);
+  color: var(--sage);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* ── Layout ── */
+.main-grid {
+  max-width: 1200px;
+  margin: 1.2rem auto 0;
+  padding: 0 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.left-col, .right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px var(--shadow), 0 1px 3px var(--shadow);
+  opacity: 0;
+  animation: fadeSlideIn 0.5s ease forwards;
+}
+
+.card.delay-1 { animation-delay: 0.05s; }
+.card.delay-2 { animation-delay: 0.1s; }
+.card.delay-3 { animation-delay: 0.15s; }
+.card.delay-4 { animation-delay: 0.2s; }
+
+.card-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
+}
+
+.card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin-bottom: 0.1rem;
+}
+
+/* ── Day Plan Card ── */
+.day-plan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.day-number {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--cream-dark);
+  color: var(--ink-light);
+  padding: 0.2rem 0.65rem;
+  border-radius: 99px;
+}
+
+.day-number.exam-day {
+  background: var(--terracotta);
+  color: white;
+}
+
+.study-block {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  border-left: 4px solid;
+}
+
+.study-block.elec { border-color: #e74c3c; background: #fef5f4; }
+.study-block.comp352 { border-color: #e67e22; background: #fef8f2; }
+.study-block.comp335 { border-color: #9b59b6; background: #f9f4fc; }
+.study-block.engr { border-color: #f1c40f; background: #fefcf2; }
+
+.study-block-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.15rem;
+}
+
+.study-block-time {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.study-block-topic {
+  font-size: 0.82rem;
+  color: var(--ink-light);
+}
+
+.study-block-goals {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+.day-note {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--terracotta);
+  background: var(--terracotta-bg);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  margin-top: 0.3rem;
+}
+
+.no-plan {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* ── Day Navigator ── */
+.day-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.day-nav-btn {
+  width: 32px; height: 32px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--warm-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.day-nav-btn:hover { background: var(--cream-dark); color: var(--ink); }
+.day-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.day-nav-btn:disabled:hover { background: var(--warm-white); color: var(--ink-light); }
+
+.day-nav-today {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  border: 1.5px solid var(--terracotta-light);
+  border-radius: 8px;
+  background: var(--terracotta-bg);
+  color: var(--terracotta);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.day-nav-today:hover { background: var(--terracotta); color: white; }
+
+.day-nav-label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-light);
+}
+
+.day-nav-dots {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.day-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cream-dark);
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1.5px solid transparent;
+}
+
+.day-dot:hover { background: var(--border); transform: scale(1.3); }
+.day-dot.current { background: var(--terracotta); border-color: var(--terracotta); transform: scale(1.3); }
+.day-dot.completed { background: var(--sage-light); }
+.day-dot.past { background: var(--border); }
+.day-dot.exam { background: var(--terracotta-light); border-radius: 2px; }
+
+/* ── Checklist Card ── */
+.subject-section {
+  margin-bottom: 1rem;
+}
+
+.subject-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.subject-header-row:hover { background: var(--cream); }
+
+.subject-chevron {
+  font-size: 0.6rem;
+  color: var(--ink-faint);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.subject-chevron.open { transform: rotate(90deg); }
+
+.subject-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.subject-dot.elec { background: #e74c3c; }
+.subject-dot.comp352 { background: #e67e22; }
+.subject-dot.comp335 { background: #9b59b6; }
+.subject-dot.engr { background: #f1c40f; }
+
+.subject-label {
+  font-weight: 700;
+  font-size: 0.88rem;
+  flex: 1;
+}
+
+.subject-pct {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-faint);
+}
+
+.subject-bar-wrap {
+  width: 60px; height: 5px;
+  background: var(--cream-dark);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.subject-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.subject-bar-fill.elec { background: #e74c3c; }
+.subject-bar-fill.comp352 { background: #e67e22; }
+.subject-bar-fill.comp335 { background: #9b59b6; }
+.subject-bar-fill.engr { background: #f1c40f; }
+
+.subject-topics {
+  display: none;
+  padding: 0.2rem 0 0.2rem 1.6rem;
+}
+.subject-topics.open { display: block; }
+
+.topic-group-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0.7rem 0 0.3rem;
+}
+
+.topic-group-title:first-child { margin-top: 0.3rem; }
+
+.topic-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.4rem;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.topic-item:hover { background: var(--cream); }
+
+.cb {
+  width: 17px; height: 17px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cb:hover { border-color: var(--terracotta-light); }
+
+.cb.checked {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+.cb.checked::after {
+  content: '';
+  width: 5px; height: 9px;
+  border: 2px solid white;
+  border-top: none; border-left: none;
+  transform: rotate(45deg) translate(-1px,-1px);
+  animation: checkPop 0.2s ease;
+}
+
+.topic-text {
+  font-size: 0.82rem;
+  flex: 1;
+  word-break: break-word;
+}
+
+.topic-text.done {
+  text-decoration: line-through;
+  color: var(--ink-faint);
+  opacity: 0.6;
+}
+
+/* ── Overall Progress ── */
+.overall-progress {
+  margin-bottom: 1rem;
+}
+
+.overall-bar {
+  height: 8px;
+  background: var(--cream-dark);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 0.4rem;
+}
+
+.overall-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage), var(--sage-light));
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+.overall-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-light);
+}
+
+/* ── Tab switcher ── */
+.tab-row {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+  background: var(--cream);
+  padding: 0.25rem;
+  border-radius: 10px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.45rem 0.6rem;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink-light);
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: var(--warm-white);
+  color: var(--ink);
+  box-shadow: 0 1px 4px var(--shadow);
+}
+
+/* ── Animations ── */
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes fadeSlideIn { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes checkPop { 0% { transform: rotate(45deg) translate(-1px,-1px) scale(0) } 60% { transform: rotate(45deg) translate(-1px,-1px) scale(1.2) } 100% { transform: rotate(45deg) translate(-1px,-1px) scale(1) } }
+@keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: 0.4 } }
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+  .main-grid { grid-template-columns: 1fr; padding: 0 1.2rem 3rem; }
+  .header { padding: 2rem 1.2rem 0.5rem; }
+  .header h1 { font-size: 2rem; }
+  .status-banner { padding: 0 1.2rem; }
+  .status-inner { flex-direction: column; gap: 0.5rem; }
+  .exam-pills { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>Final Helper</h1>
+  <div class="header-row">
+    <div class="date" id="dateDisplay"></div>
+    <div class="motivator" id="motivator"></div>
+  </div>
+</header>
+
+<div class="status-banner" id="statusBanner"></div>
+
+<main class="main-grid">
+  <div class="left-col">
+    <section class="card delay-1" id="dayViewCard"></section>
+    <section class="card delay-2" id="tomorrowCard"></section>
+  </div>
+  <div class="right-col">
+    <section class="card delay-3" id="checklistCard"></section>
+  </div>
+</main>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA: Study Plan (embedded from studyPLan.md)
+// ═══════════════════════════════════════════════════════
+const EXAMS = [
+  { course: 'COMP 352', date: '2026-04-17', color: '#e67e22' },
+  { course: 'ENGR 202', date: '2026-04-20', color: '#f1c40f' },
+  { course: 'ELEC 275', date: '2026-04-30', color: '#e74c3c' },
+  { course: 'COMP 335', date: '2026-05-01', color: '#9b59b6' },
+];
+
+const PLAN = [
+  {
+    day: 1, date: '2026-03-30', label: 'Sunday, March 30',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Basic Circuit Concepts (Part 1)', sections: 'Ch. 2.1–2.3', goals: 'Voltage, current, resistance fundamentals' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Algorithm Analysis', sections: 'Ch. 4.1–4.2', goals: 'Big O notation introduction, complexity basics' },
+    ]
+  },
+  {
+    day: 2, date: '2026-03-31', label: 'Monday, March 31',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Intro to Theory of Computation + FSA Basics', sections: 'Ch. 1–2', goals: 'Automata overview, DFA fundamentals' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Sustainable Development Overview', sections: 'Week 1 notes', goals: 'Course concepts introduction' },
+    ]
+  },
+  {
+    day: 3, date: '2026-04-01', label: 'Tuesday, April 1',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Basic Circuit Concepts (Part 2) + Nodal Analysis (Part 1)', sections: 'Ch. 2.4–2.7, 3.1–3.2', goals: "Ohm's law, Kirchhoff's laws, node voltage method" },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Recursion + Stacks & Queues', sections: 'Ch. 5.1–5.3, 3.1, 6.1–6.2', goals: 'Recursive algorithms, basic data structures' },
+    ]
+  },
+  {
+    day: 4, date: '2026-04-02', label: 'Wednesday, April 2',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Regular Expressions, DFAs, NFAs', sections: 'Ch. 2–3', goals: 'NFA to DFA conversion, regex basics' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Environmental Issues + Global Warming Intro', sections: 'Week 3, 5 notes', goals: 'Environmental context, climate concepts' },
+    ]
+  },
+  {
+    day: 5, date: '2026-04-03', label: 'Thursday, April 3',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Nodal Analysis (Part 2) + Mesh Analysis', sections: 'Ch. 3.2–3.5', goals: 'Complete nodal/mesh analysis techniques' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Linked Lists (Part 1)', sections: 'Ch. 3.2–3.3', goals: 'Node insertion, deletion, basic operations' },
+    ]
+  },
+  {
+    day: 6, date: '2026-04-04', label: 'Friday, April 4',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Regular Grammars, Closure Properties, Pumping Lemma', sections: 'Ch. 3.3–4.3', goals: 'Closure properties, pumping lemma proofs' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'LCA Introduction + Risk Assessment', sections: 'Week 8, 10 notes', goals: 'LCA methodology, risk concepts' },
+    ]
+  },
+  {
+    day: 7, date: '2026-04-05', label: 'Saturday, April 5',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Thevenin & Norton Equivalents + Inductors/Capacitors', sections: 'Ch. 3.6–3.7, 4.1', goals: 'Circuit simplification, inductor/capacitor behavior' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Linked Lists (Part 2) + Trees (Part 1)', sections: 'Ch. 3.4, 8.1–8.2', goals: 'Doubly linked lists, tree traversal basics' },
+    ]
+  },
+  {
+    day: 8, date: '2026-04-06', label: 'Sunday, April 6',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Context-Free Grammars + Simplification', sections: 'Ch. 5–6', goals: 'CFG fundamentals, Chomsky normal form' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Review Week 1–5 + Case Studies', sections: 'All notes', goals: 'Concept reinforcement, case study mastery' },
+    ]
+  },
+  {
+    day: 9, date: '2026-04-07', label: 'Monday, April 7',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Complex Numbers + Sinusoidal Sources (Part 1)', sections: 'Appendix A, Ch. 4.2–4.4', goals: 'Complex number arithmetic, AC circuit intro' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Trees (Part 2) – BSTs & Balanced Trees', sections: 'Ch. 8.3–8.4', goals: 'Self-balancing trees, tree rotations' },
+    ]
+  },
+  {
+    day: 10, date: '2026-04-08', label: 'Tuesday, April 8',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Push-Down Automata (Intro + Design)', sections: 'Ch. 7.1–7.3', goals: 'PDA fundamentals, DPA vs NPDA' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Practice Exam 1', sections: 'Timed test', goals: 'Exam familiarization' },
+    ]
+  },
+  {
+    day: 11, date: '2026-04-09', label: 'Wednesday, April 9',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Sinusoidal Sources & Phasors (Part 2)', sections: 'Ch. 4.4–4.6', goals: 'Impedance, phasor diagrams, AC analysis' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Heaps & Priority Queues', sections: 'Ch. 9.1–9.3', goals: 'Min/max heaps, heap operations' },
+    ]
+  },
+  {
+    day: 12, date: '2026-04-10', label: 'Thursday, April 10',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Closure Properties of CFLs + Pumping Lemma for CFLs', sections: 'Ch. 8–8.1', goals: 'CFL closure properties, CFL pumping lemma proofs' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Practice Exam 2', sections: 'Timed test', goals: 'Exam simulation' },
+    ]
+  },
+  {
+    day: 13, date: '2026-04-11', label: 'Friday, April 11',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'AC Nodal & Mesh Analysis + Complex Power', sections: 'Ch. 4.4–4.6, 7.1–7.3', goals: 'AC circuit analysis, power factor, reactive power' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Hash Tables & Hashing', sections: 'Ch. 10.1–10.3', goals: 'Hash functions, collision resolution strategies' },
+    ]
+  },
+  {
+    day: 14, date: '2026-04-12', label: 'Saturday, April 12',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Turing Machines (Intro + Design)', sections: 'Ch. 9–9.3', goals: 'TM fundamentals, TM design basics' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Full Practice Exam 3', sections: 'Complete timed test', goals: 'Full exam readiness' },
+    ]
+  },
+  {
+    day: 15, date: '2026-04-13', label: 'Sunday, April 13',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Transformers & Impedance Matching', sections: 'Ch. 7.4', goals: 'Ideal transformer analysis, impedance matching' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Search Trees (BST, AVL, Red-Black)', sections: 'Ch. 11.1–11.3', goals: 'Tree balancing, search tree performance' },
+    ]
+  },
+  {
+    day: 16, date: '2026-04-14', label: 'Monday, April 14',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 175, topic: 'Turing Machines – Combining & Variations', sections: 'Ch. 9.3–10', goals: 'Multi-tape TMs, non-deterministic TMs' },
+      { course: 'ENGR 202', cls: 'engr', mins: 35, topic: 'Final Exam Prep – Full Review', sections: 'All weeks', goals: 'Complete course mastery' },
+    ]
+  },
+  {
+    day: 17, date: '2026-04-15', label: 'Tuesday, April 15',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Three-Phase Circuits (Part 1)', sections: 'Ch. 7.5', goals: 'Balanced three-phase fundamentals' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'Sorting Algorithms (Part 1)', sections: 'Ch. 12.1–12.2', goals: 'Bubble sort, merge sort, insertion sort' },
+    ]
+  },
+  {
+    day: 18, date: '2026-04-16', label: 'Wednesday, April 16',
+    note: 'COMP 352 FINAL EXAM TOMORROW',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 105, topic: 'Decidability & Undecidability', sections: 'Ch. 10.4–12.1', goals: 'Halting problem, undecidable languages' },
+      { course: 'COMP 352', cls: 'comp352', mins: 105, topic: 'INTENSIVE FINAL REVIEW', sections: 'All chapters 3–14', goals: 'Comprehensive exam preparation' },
+    ]
+  },
+  {
+    day: 19, date: '2026-04-17', label: 'Thursday, April 17',
+    note: 'COMP 352 FINAL EXAM TODAY',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 105, topic: 'Three-Phase Circuits (Part 2)', sections: 'Ch. 7.5', goals: 'Three-phase power calculations, balanced systems' },
+      { course: 'COMP 335', cls: 'comp335', mins: 105, topic: "Turing's Thesis & Computational Universality", sections: 'Ch. 10', goals: 'Universal Turing machine concept' },
+    ]
+  },
+  {
+    day: 20, date: '2026-04-18', label: 'Friday, April 18',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'PRACTICE PROBLEM SET 1 – Ch. 2, 3, 7', sections: 'Problem solving', goals: 'Practical application of circuits and power' },
+    ]
+  },
+  {
+    day: 21, date: '2026-04-19', label: 'Saturday, April 19',
+    note: 'ENGR 202 FINAL EXAM TOMORROW',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 140, topic: 'Problem-Solving Session – All Topics', sections: 'Ch. 1–12 combined', goals: 'Diverse problem types, proof techniques' },
+      { course: 'ENGR 202', cls: 'engr', mins: 70, topic: 'FINAL EXAM PREP – Complete Review', sections: 'All weeks 1–12', goals: 'Comprehensive course mastery' },
+    ]
+  },
+  {
+    day: 22, date: '2026-04-20', label: 'Sunday, April 20',
+    note: 'ENGR 202 FINAL EXAM TODAY',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'PRACTICE PROBLEM SET 2 – Ch. 4, 7.1–7.5', sections: 'AC analysis and power calculations', goals: 'AC circuit mastery through practice' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Mid-course refresher – Regular Languages & Automata', sections: 'Ch. 1–4 summary', goals: 'Intermediate concepts review' },
+    ]
+  },
+  {
+    day: 23, date: '2026-04-21', label: 'Monday, April 21',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Sinusoidal/AC Deep Dive', sections: 'Ch. 4.2–4.6', goals: 'AC fundamentals mastery' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Regular Languages & Automata Mastery', sections: 'Ch. 2–4', goals: 'FSA/DFA/NFA equivalence proofs' },
+    ]
+  },
+  {
+    day: 24, date: '2026-04-22', label: 'Tuesday, April 22',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Power Analysis Deep Dive', sections: 'Ch. 7.1–7.3', goals: 'Real/reactive/apparent power mastery' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Context-Free Languages Mastery', sections: 'Ch. 5–8', goals: 'CFG design, PDA design, CFL properties' },
+    ]
+  },
+  {
+    day: 25, date: '2026-04-23', label: 'Wednesday, April 23',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Transformers & Three-Phase Combined', sections: 'Ch. 7.4–7.5', goals: 'Transformer equations, 3-phase power calculations' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Turing Machines Mastery', sections: 'Ch. 9–10', goals: 'Multi-tape TMs, decidability proofs' },
+    ]
+  },
+  {
+    day: 26, date: '2026-04-24', label: 'Thursday, April 24',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Magnetic Circuits & Energy Conversion', sections: 'Ch. 18.1–18.5', goals: 'Magnetic force, torque, energy relationships' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Decidability & Halting Problem Deep Dive', sections: 'Ch. 10.4–12.1', goals: 'Undecidable language proofs, complexity classes' },
+    ]
+  },
+  {
+    day: 27, date: '2026-04-25', label: 'Friday, April 25',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Electric Machines – Motors & Generators', sections: 'Ch. 19–20', goals: 'Motor/generator equations, operation principles' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Final Practice Problems – All Topics', sections: 'Ch. 1–12', goals: 'Problem variety, confidence building' },
+    ]
+  },
+  {
+    day: 28, date: '2026-04-26', label: 'Saturday, April 26',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'FULL EXAM SIMULATION – Practice Exam 1', sections: 'Ch. 2–4, 7, 18–20 (timed)', goals: 'Exam-paced comprehensive review' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Problem-Solving Session – Weak Areas', sections: 'Focus on difficult topics', goals: 'Targeted gap-filling' },
+    ]
+  },
+  {
+    day: 29, date: '2026-04-27', label: 'Sunday, April 27',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'FULL EXAM SIMULATION – Practice Exam 2', sections: 'Ch. 2–4, 7, 18–20 (timed)', goals: 'Second comprehensive practice exam' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Final Review – Identify & Fix Gaps', sections: 'Weak areas summary', goals: 'Targeted improvement' },
+    ]
+  },
+  {
+    day: 30, date: '2026-04-28', label: 'Monday, April 28',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Comprehensive Review & Problem Solving', sections: 'Ch. 2–4, 7, 18–20', goals: 'Last-minute clarifications, practice' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'Final Practice Problems – All Topics', sections: 'Ch. 1–12', goals: 'Confidence building, concept reinforcement' },
+    ]
+  },
+  {
+    day: 31, date: '2026-04-29', label: 'Tuesday, April 29',
+    note: 'COMP 335 FINAL EXAM day after tomorrow',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 140, topic: 'Light Review – Formulas & Key Concepts', sections: 'Ch. 2–4, 7, 18–20', goals: 'Formula sheet preparation, concept review' },
+      { course: 'COMP 335', cls: 'comp335', mins: 70, topic: 'FINAL REVIEW BEFORE EXAM', sections: 'All topics, handwritten notes', goals: 'Final confidence check' },
+    ]
+  },
+  {
+    day: 32, date: '2026-04-30', label: 'Wednesday, April 30',
+    note: 'ELEC 275 FINAL EXAM TODAY',
+    blocks: [
+      { course: 'ELEC 275', cls: 'elec', mins: 210, topic: 'FINAL EXAM DAY', sections: '', goals: 'Execute with confidence' },
+    ]
+  },
+  {
+    day: 33, date: '2026-05-01', label: 'Thursday, May 1',
+    note: 'COMP 335 FINAL EXAM TODAY',
+    blocks: [
+      { course: 'COMP 335', cls: 'comp335', mins: 210, topic: 'FINAL EXAM DAY', sections: '', goals: 'Execute with confidence' },
+    ]
+  },
+];
+
+// ═══════════════════════════════════════════════════════
+// DATA: Checklist (embedded from checklist.md)
+// ═══════════════════════════════════════════════════════
+const CHECKLIST = {
+  'ELEC 275': {
+    cls: 'elec',
+    groups: [
+      { title: 'Week 1: Basic Circuit Concepts', items: [
+        'Voltage, current, resistance definitions',
+        'Ohm\'s law (V = IR)',
+        'Power dissipation (P = VI, P = I²R, P = V²/R)',
+        'Ideal voltage and current sources',
+        'Series and parallel connections',
+      ]},
+      { title: 'Week 2: Nodal and Mesh Analysis', items: [
+        'Kirchhoff\'s voltage law (KVL)',
+        'Kirchhoff\'s current law (KCL)',
+        'Nodal analysis (node voltage method)',
+        'Mesh analysis (mesh current method)',
+        'Setting up and solving equations',
+      ]},
+      { title: 'Week 3: Thevenin\'s and Max Power Transfer', items: [
+        'Thevenin equivalent circuits (V_th and R_th)',
+        'Norton equivalent circuits',
+        'Finding Thevenin/Norton parameters',
+        'Maximum power transfer theorem',
+        'Load resistance calculation',
+      ]},
+      { title: 'Week 4: Inductors and Capacitors', items: [
+        'Inductor equation V = L(di/dt)',
+        'Inductor energy storage',
+        'Capacitor equation I = C(dv/dt)',
+        'Capacitor energy storage',
+        'Initial conditions and transients',
+      ]},
+      { title: 'Week 5: Complex Numbers', items: [
+        'Complex number form (a + jb)',
+        'Complex arithmetic (+, ×, ÷)',
+        'Rectangular to polar conversion',
+        'Polar to rectangular conversion',
+        'Euler\'s formula',
+      ]},
+      { title: 'Week 6: Sinusoidal Sources', items: [
+        'Sinusoidal voltage: v(t) = V_m sin(ωt + φ)',
+        'Peak amplitude and RMS values',
+        'Angular frequency (ω) and frequency (f)',
+        'Phase angle and phase shift',
+        'Average power for sinusoids',
+      ]},
+      { title: 'Week 7: Phasors and AC Analysis', items: [
+        'Phasor representation of sinusoids',
+        'Impedance: Z = R + jX',
+        'Series impedance combinations',
+        'Phasor form of Ohm\'s law: V = ZI',
+        'Phasor nodal and mesh analysis',
+      ]},
+      { title: 'Week 8: AC Analysis and Complex Power', items: [
+        'AC nodal analysis with phasors',
+        'AC mesh analysis with phasors',
+        'Real power: P = V_rms × I_rms × cos(θ)',
+        'Reactive power: Q = V_rms × I_rms × sin(θ)',
+        'Apparent power: S = V_rms × I_rms',
+        'Power factor: cos(θ)',
+        'Complex power: S = P + jQ',
+      ]},
+      { title: 'Week 9: Transformers and Impedance Matching', items: [
+        'Ideal transformer equations',
+        'Turns ratio: n = N₁/N₂',
+        'Voltage relationship: V₁/V₂ = N₁/N₂',
+        'Current relationship: I₁/I₂ = N₂/N₁',
+        'Impedance transformation',
+        'Impedance matching applications',
+      ]},
+      { title: 'Week 10: Three-Phase Circuits', items: [
+        'Three-phase voltage generation (120° separation)',
+        'Y (star) connection',
+        'Δ (delta) connection',
+        'Line voltage vs phase voltage relationships',
+        'Balanced three-phase systems',
+        'Three-phase power calculation',
+      ]},
+      { title: 'Week 11: Magnetic Circuits', items: [
+        'Magnetic field definition and units (Tesla)',
+        'Magnetic flux: Φ = B × A',
+        'Permeability and reluctance',
+        'Ampere\'s law',
+        'Magnetic circuit analogies to electric circuits',
+        'Magnetization curves',
+      ]},
+      { title: 'Week 12: Energy Conversion and Electric Machines', items: [
+        'Energy stored in magnetic field',
+        'Force on current-carrying conductor: F = BIℓ',
+        'Torque in machines',
+        'AC induction motor operation',
+        'Synchronous motor principles',
+        'DC motor principles',
+        'Generator operation basics',
+      ]},
+    ]
+  },
+  'COMP 352': {
+    cls: 'comp352',
+    groups: [
+      { title: 'Week 1: Algorithm Analysis', items: [
+        'Big O notation (worst case)',
+        'Big Omega notation (best case)',
+        'Big Theta notation (average case)',
+        'Complexity classes: O(1), O(log n), O(n), O(n²), O(2ⁿ)',
+        'Time and space complexity',
+        'Comparing algorithm efficiency',
+      ]},
+      { title: 'Weeks 1-2: Recursion', items: [
+        'Recursive function definition',
+        'Base case and recursive case',
+        'Recursive call stack',
+        'Factorial, Fibonacci examples',
+        'Binary search recursion',
+        'Merge sort and quick sort recursion',
+        'Recursive complexity analysis',
+      ]},
+      { title: 'Week 3: Arrays, Stacks, and Queues', items: [
+        'Array access, insertion, deletion (time complexity)',
+        'Stack (LIFO): push and pop operations',
+        'Queue (FIFO): enqueue and dequeue operations',
+        'Stack applications (parentheses matching, evaluation)',
+        'Queue applications (scheduling, buffering)',
+      ]},
+      { title: 'Week 4: Linked Lists', items: [
+        'Singly linked list structure and operations',
+        'Doubly linked list (forward and backward pointers)',
+        'Linked list insertion and deletion',
+        'Search in linked lists',
+        'Circular linked lists',
+        'Linked list vs array trade-offs',
+      ]},
+      { title: 'Weeks 5-6: Trees', items: [
+        'Binary tree structure and terminology',
+        'Tree traversal: pre-order, in-order, post-order',
+        'Binary search tree (BST) property',
+        'BST search, insertion, deletion',
+        'BST worst case (unbalanced tree)',
+        'AVL tree balancing',
+        'Tree rotations (single and double)',
+      ]},
+      { title: 'Weeks 6-7: Priority Queues and Heaps', items: [
+        'Heap property (min-heap and max-heap)',
+        'Array representation of heaps',
+        'Heap insertion (bubble up)',
+        'Heap deletion (bubble down)',
+        'Heapify operation',
+        'Heap sort algorithm',
+        'Priority queue implementation',
+      ]},
+      { title: 'Weeks 8-9: Hash Tables', items: [
+        'Hash function design and properties',
+        'Collision resolution: chaining',
+        'Collision resolution: open addressing',
+        'Linear probing, quadratic probing, double hashing',
+        'Load factor and rehashing',
+        'Hash table operations (search, insert, delete)',
+      ]},
+      { title: 'Weeks 9-10: Search Trees', items: [
+        'AVL tree height property',
+        'AVL insertions and rebalancing',
+        'AVL deletions and rebalancing',
+        'Red-Black trees overview',
+        '2-3 trees and B-trees basics',
+        'Search tree performance guarantees',
+      ]},
+      { title: 'Weeks 9-10: Sorting', items: [
+        'Bubble sort, selection sort, insertion sort (O(n²))',
+        'Merge sort (O(n log n), stable)',
+        'Quick sort (O(n log n) average, O(n²) worst)',
+        'Heap sort (O(n log n), in-place)',
+        'Counting sort and radix sort',
+        'Sorting stability',
+        'Choosing appropriate sorting algorithm',
+      ]},
+      { title: 'Weeks 10-12: Graphs', items: [
+        'Graph representation: adjacency list',
+        'Graph representation: adjacency matrix',
+        'Depth-first search (DFS) and applications',
+        'Breadth-first search (BFS) and applications',
+        'Shortest path: Dijkstra\'s algorithm',
+        'Minimum spanning trees: Kruskal\'s algorithm',
+        'Minimum spanning trees: Prim\'s algorithm',
+        'Topological sorting',
+      ]},
+    ]
+  },
+  'COMP 335': {
+    cls: 'comp335',
+    groups: [
+      { title: 'Week 1: Intro to Theory of Computation', items: [
+        'Alphabet and string definitions',
+        'Language definition',
+        'Finite automata motivation',
+        'Deterministic vs nondeterministic behavior',
+      ]},
+      { title: 'Week 2: Finite State Automata', items: [
+        'Deterministic finite automaton (DFA) definition',
+        'DFA states, transitions, accept states',
+        'State diagrams',
+        'Transition function: δ(q, a) → q\'',
+        'Language of a DFA: L(M)',
+        'DFA execution and string acceptance',
+      ]},
+      { title: 'Week 3: Regular Expressions and Languages', items: [
+        'Regular expression definition',
+        'Union (∪), concatenation (·), Kleene star (*)',
+        'Regex to NFA conversion',
+        'Regex pattern matching applications',
+      ]},
+      { title: 'Week 3: Regular Grammars', items: [
+        'Context-free grammar (CFG) basics',
+        'Regular grammar definition',
+        'Right-linear and left-linear grammars',
+        'Grammar to DFA conversion',
+      ]},
+      { title: 'Week 4: Closure Properties of Regular Languages', items: [
+        'Closure under union',
+        'Closure under concatenation',
+        'Closure under Kleene star',
+        'Closure under complement and intersection',
+        'Proof techniques using automata',
+      ]},
+      { title: 'Week 5: Pumping Lemma for Regular Languages', items: [
+        'Pumping lemma statement',
+        'Proof by contradiction technique',
+        'Showing languages are NOT regular',
+        'Example: {aⁿbⁿ} is not regular',
+      ]},
+      { title: 'Week 6: Context-Free Grammars', items: [
+        'CFG definition: terminals, non-terminals, productions, start symbol',
+        'Derivation and parse trees',
+        'Language generation: L(G)',
+        'Ambiguous vs unambiguous grammars',
+        'CFG applications to parsing',
+      ]},
+      { title: 'Week 7: Simplification of CFGs and Normal Forms', items: [
+        'Removing useless symbols (unreachable, non-generating)',
+        'Removing ε-productions (nullable symbols)',
+        'Removing unit productions',
+        'Chomsky Normal Form (CNF): A → BC or A → a',
+        'Converting CFG to CNF',
+      ]},
+      { title: 'Week 8: Review', items: [
+        'Review Weeks 1-7 material',
+      ]},
+      { title: 'Week 9: Push-Down Automata', items: [
+        'PDA definition: states, input, stack',
+        'Stack operations: push, pop',
+        'PDA transition: δ(q, a, Z) → (p, γ)',
+        'Deterministic PDA (DPDA)',
+        'Nondeterministic PDA (NPDA)',
+        'Acceptance by final state vs empty stack',
+      ]},
+      { title: 'Week 9: Closure Properties and Pumping Lemma for CFLs', items: [
+        'Closure under union, concatenation, Kleene star',
+        'NOT closed under complement and intersection',
+        'Pumping lemma for CFLs',
+        'Showing languages are NOT context-free',
+        'Example: {aⁿbⁿcⁿ} is not context-free',
+      ]},
+      { title: 'Week 11: Turing Machines', items: [
+        'Turing machine (TM) definition',
+        'TM tape, read/write head, state machine',
+        'Transition function: δ(q, a) → (p, b, D)',
+        'Accept states and reject states',
+        'Language of a TM: L(M)',
+        'TM execution and string acceptance',
+      ]},
+      { title: 'Weeks 9.3, 10: Combining TMs and Turing\'s Thesis', items: [
+        'Multi-tape Turing machines',
+        'Nondeterministic Turing machines',
+        'TM equivalence (all variants compute same languages)',
+        'Church-Turing thesis',
+        'Computable functions and languages',
+        'Universal Turing machine',
+      ]},
+      { title: 'Weeks 10.4, 12.1: Decidability and the Halting Problem', items: [
+        'Decidable language definition (recursive)',
+        'Semidecidable language (recursively enumerable)',
+        'Halting problem statement',
+        'Halting problem undecidability proof',
+        'Diagonalization proof technique',
+        'Other undecidable problems',
+        'Reduction techniques',
+      ]},
+    ]
+  },
+  'ENGR 202': {
+    cls: 'engr',
+    groups: [
+      { title: 'Weeks 1-2: Sustainable Development Concepts', items: [
+        'Definition: meeting present needs without compromising future',
+        'Sustainable development vs economic development',
+        'Role of engineers in sustainability',
+        'Triple bottom line: economic, social, environmental',
+        'Course objectives and case studies',
+      ]},
+      { title: 'Weeks 3-4: Overview of Environmental Issues', items: [
+        'Global environmental challenges overview',
+        'Air quality and emissions',
+        'Water and soil degradation',
+        'Biodiversity loss and habitat destruction',
+        'Resource depletion and consumption patterns',
+      ]},
+      { title: 'Weeks 5-6: Global Warming and Greenhouse Effect', items: [
+        'Greenhouse effect mechanism',
+        'Greenhouse gases: CO₂, CH₄, N₂O, CFCs',
+        'Global warming and temperature rise',
+        'Climate change impacts and consequences',
+        'Carbon cycle and anthropogenic sources',
+        'Mitigation and adaptation strategies',
+      ]},
+      { title: 'Weeks 8-9: Life Cycle Assessment (LCA)', items: [
+        'LCA definition and purpose',
+        'Goal and scope definition',
+        'Functional unit and system boundaries',
+        'Life cycle inventory (LCI): materials, energy, emissions',
+        'Impact assessment categories: GWP, AP, EP, etc.',
+        'LCA interpretation and results communication',
+        'LCA applications to products and processes',
+      ]},
+      { title: 'Weeks 10-11: Risk Assessment', items: [
+        'Risk definition: probability × consequence',
+        'Hazard identification and analysis',
+        'Risk probability and severity estimation',
+        'Risk mitigation strategies and controls',
+        'Risk monitoring and management',
+        'Risk communication to stakeholders',
+        'Emergency response planning',
+      ]},
+      { title: 'Week 12: Sustainable Environmental Management', items: [
+        'Environmental management systems',
+        'Environmental policy and objectives',
+        'Operational controls and monitoring',
+        'Sustainability case studies and examples',
+        'Best practices and lessons learned',
+        'Trade-offs in sustainability decisions',
+        'Implementation of sustainable solutions',
+      ]},
+    ]
+  },
+};
+
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+let checkedTopics = JSON.parse(localStorage.getItem('fh_checked') || '{}');
+let completedDays = JSON.parse(localStorage.getItem('fh_completed_days') || '{}');
+let openSubjects = JSON.parse(localStorage.getItem('fh_open_subjects') || '{}');
+
+function saveChecked() { localStorage.setItem('fh_checked', JSON.stringify(checkedTopics)); }
+function saveCompletedDays() { localStorage.setItem('fh_completed_days', JSON.stringify(completedDays)); }
+function saveOpenSubjects() { localStorage.setItem('fh_open_subjects', JSON.stringify(openSubjects)); }
+
+// ═══════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════
+function today() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function tomorrow() {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function daysBetween(a, b) {
+  return Math.round((new Date(b) - new Date(a)) / 86400000);
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function topicKey(course, groupIdx, itemIdx) {
+  return `${course}:${groupIdx}:${itemIdx}`;
+}
+
+function getSubjectStats(courseName) {
+  const course = CHECKLIST[courseName];
+  let total = 0, done = 0;
+  course.groups.forEach((g, gi) => {
+    g.items.forEach((_, ii) => {
+      total++;
+      if (checkedTopics[topicKey(courseName, gi, ii)]) done++;
+    });
+  });
+  return { total, done };
+}
+
+function getPlanForDate(dateStr) {
+  return PLAN.find(p => p.date === dateStr);
+}
+
+function getStudyDayNumber() {
+  const t = today();
+  const plan = getPlanForDate(t);
+  if (plan) return plan.day;
+  // If between plan dates, find the last day that has passed
+  for (let i = PLAN.length - 1; i >= 0; i--) {
+    if (PLAN[i].date <= t) return PLAN[i].day;
+  }
+  return 0;
+}
+
+function getScheduleStatus() {
+  const t = today();
+  const currentDayNum = getStudyDayNumber();
+  // Count how many past days are marked complete
+  let shouldHaveCompleted = 0;
+  let actuallyCompleted = 0;
+  for (const p of PLAN) {
+    if (p.date < t) {
+      shouldHaveCompleted++;
+      if (completedDays[p.date]) actuallyCompleted++;
+    }
+  }
+  const diff = actuallyCompleted - shouldHaveCompleted;
+  if (shouldHaveCompleted === 0) return { status: 'on-track', diff: 0, completed: 0, expected: 0 };
+  if (diff >= 0) {
+    return actuallyCompleted > shouldHaveCompleted
+      ? { status: 'ahead', diff, completed: actuallyCompleted, expected: shouldHaveCompleted }
+      : { status: 'on-track', diff: 0, completed: actuallyCompleted, expected: shouldHaveCompleted };
+  }
+  return { status: 'behind', diff, completed: actuallyCompleted, expected: shouldHaveCompleted };
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER: Header
+// ═══════════════════════════════════════════════════════
+const motivators = [
+  "You've got this — one task at a time.",
+  "Small progress is still progress.",
+  "Focus on what matters most today.",
+  "Discipline today, freedom tomorrow.",
+  "You're closer than you think.",
+  "Today's effort is tomorrow's relief.",
+  "Done is better than perfect.",
+  "Trust the process.",
+  "Every checked box counts.",
+  "Finals won't know what hit them.",
+];
+
+document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', {
+  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+});
+document.getElementById('motivator').textContent = motivators[Math.floor(Math.random() * motivators.length)];
+
+// ═══════════════════════════════════════════════════════
+// RENDER: Status Banner
+// ═══════════════════════════════════════════════════════
+function renderStatusBanner() {
+  const t = today();
+  const { status, diff, completed, expected } = getScheduleStatus();
+
+  let statusHTML = '';
+  if (status === 'on-track') {
+    statusHTML = `<div class="status-pill on-track"><span class="dot"></span> On track — ${completed}/${expected} days completed</div>`;
+  } else if (status === 'behind') {
+    statusHTML = `<div class="status-pill behind"><span class="dot"></span> ${Math.abs(diff)} day${Math.abs(diff)>1?'s':''} behind — ${completed}/${expected} completed</div>`;
+  } else {
+    statusHTML = `<div class="status-pill ahead"><span class="dot"></span> ${diff} day${diff>1?'s':''} ahead!</div>`;
+  }
+
+  let examHTML = EXAMS.map(e => {
+    const d = daysBetween(t, e.date);
+    if (d < 0) return `<span class="exam-pill done-exam">${e.course} — done</span>`;
+    if (d === 0) return `<span class="exam-pill imminent">${e.course} — TODAY</span>`;
+    if (d <= 3) return `<span class="exam-pill imminent">${e.course} — ${d}d left</span>`;
+    return `<span class="exam-pill">${e.course} — ${d}d</span>`;
+  }).join('');
+
+  document.getElementById('statusBanner').innerHTML = `
+    <div class="status-inner">
+      ${statusHTML}
+      <div class="exam-pills">${examHTML}</div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER: Day Plan Card (navigable)
+// ═══════════════════════════════════════════════════════
+let currentViewIndex = PLAN.findIndex(p => p.date === today());
+if (currentViewIndex === -1) {
+  // Find nearest future day or last day
+  currentViewIndex = PLAN.findIndex(p => p.date >= today());
+  if (currentViewIndex === -1) currentViewIndex = PLAN.length - 1;
+}
+
+function navigateDay(delta) {
+  currentViewIndex = Math.max(0, Math.min(PLAN.length - 1, currentViewIndex + delta));
+  renderDayView();
+}
+
+function jumpToDay(idx) {
+  currentViewIndex = idx;
+  renderDayView();
+}
+
+function jumpToToday() {
+  const idx = PLAN.findIndex(p => p.date === today());
+  if (idx !== -1) { currentViewIndex = idx; renderDayView(); }
+}
+
+function renderDayPlanContent(plan, dateStr) {
+  const isToday = dateStr === today();
+  const isTmrw = dateStr === tomorrow();
+  const isPast = dateStr < today();
+  const isDone = completedDays[dateStr];
+  const totalMins = plan.blocks.reduce((s, b) => s + b.mins, 0);
+  const isExamDay = plan.note && plan.note.includes('EXAM TODAY');
+
+  let tagHTML = '';
+  if (isToday) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--terracotta);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">TODAY</span>';
+  else if (isTmrw) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--blue);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">TOMORROW</span>';
+  else if (isPast && isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--sage);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">DONE</span>';
+  else if (isPast && !isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--terracotta-light);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">MISSED</span>';
+
+  let blocksHTML = plan.blocks.map(b => `
+    <div class="study-block ${b.cls}">
+      <div class="study-block-title">${esc(b.course)}</div>
+      <div class="study-block-time">${b.mins} min${b.sections ? ' · ' + esc(b.sections) : ''}</div>
+      <div class="study-block-topic">${esc(b.topic)}</div>
+      ${b.goals ? `<div class="study-block-goals">${esc(b.goals)}</div>` : ''}
+    </div>
+  `).join('');
+
+  let noteHTML = plan.note ? `<div class="day-note">${esc(plan.note)}</div>` : '';
+
+  let markDoneHTML = '';
+  if ((isToday || isPast) && !isDone) {
+    markDoneHTML = `<button class="btn btn-sage" style="margin-top:0.8rem;width:100%;" onclick="markDayDone('${dateStr}')">Mark as completed</button>`;
+  } else if (isDone) {
+    markDoneHTML = `<button class="btn" style="margin-top:0.8rem;width:100%;background:var(--cream);color:var(--ink-light);cursor:pointer;" onclick="unmarkDayDone('${dateStr}')">Undo completed</button>`;
+  }
+
+  return `
+    <div class="day-plan-header">
+      <h3 class="card-title">${esc(plan.label)}${tagHTML}</h3>
+      <span class="day-number ${isExamDay ? 'exam-day' : ''}">Day ${plan.day} · ${totalMins} min</span>
+    </div>
+    ${noteHTML}
+    ${blocksHTML}
+    ${markDoneHTML}
+  `;
+}
+
+function renderDayView() {
+  const el = document.getElementById('dayViewCard');
+  const plan = PLAN[currentViewIndex];
+  const t = today();
+  const isViewingToday = plan.date === t;
+
+  // Day dot navigation
+  let dotsHTML = PLAN.map((p, i) => {
+    let cls = 'day-dot';
+    if (i === currentViewIndex) cls += ' current';
+    else if (completedDays[p.date]) cls += ' completed';
+    else if (p.date < t) cls += ' past';
+    // Mark exam days
+    if (p.note && p.note.includes('EXAM TODAY')) cls += ' exam';
+    return `<div class="${cls}" onclick="jumpToDay(${i})" title="Day ${p.day}: ${p.label}"></div>`;
+  }).join('');
+
+  let navHTML = `
+    <div class="day-nav">
+      <button class="day-nav-btn" onclick="navigateDay(-1)" ${currentViewIndex === 0 ? 'disabled' : ''}>◀</button>
+      ${!isViewingToday ? `<button class="day-nav-today" onclick="jumpToToday()">Today</button>` : ''}
+      <span class="day-nav-label">Day ${plan.day} of ${PLAN.length}</span>
+      <button class="day-nav-btn" onclick="navigateDay(1)" ${currentViewIndex === PLAN.length-1 ? 'disabled' : ''}>▶</button>
+    </div>
+    <div class="day-nav-dots">${dotsHTML}</div>
+  `;
+
+  el.innerHTML = `
+    <div class="card-label">Study Plan</div>
+    ${navHTML}
+    ${renderDayPlanContent(plan, plan.date)}
+  `;
+}
+
+function renderTomorrowCard() {
+  const el = document.getElementById('tomorrowCard');
+  const tmrw = tomorrow();
+  const plan = getPlanForDate(tmrw);
+
+  if (!plan) {
+    const lastDay = PLAN[PLAN.length - 1].date;
+    let msg = tmrw > lastDay ? 'No more study days scheduled!' : 'No study scheduled for tomorrow.';
+    el.innerHTML = `<div class="card-label">Tomorrow</div><div class="no-plan">${msg}</div>`;
+    return;
+  }
+
+  el.innerHTML = `
+    <div class="card-label">Up Next — Tomorrow</div>
+    ${renderDayPlanContent(plan, tmrw)}
+  `;
+}
+
+function markDayDone(dateStr) {
+  completedDays[dateStr] = true;
+  saveCompletedDays();
+  renderDayView();
+  renderTomorrowCard();
+  renderStatusBanner();
+}
+
+function unmarkDayDone(dateStr) {
+  delete completedDays[dateStr];
+  saveCompletedDays();
+  renderDayView();
+  renderTomorrowCard();
+  renderStatusBanner();
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER: Checklist Card
+// ═══════════════════════════════════════════════════════
+function renderChecklist() {
+  const el = document.getElementById('checklistCard');
+
+  // Overall stats
+  let totalAll = 0, doneAll = 0;
+  Object.keys(CHECKLIST).forEach(c => {
+    const s = getSubjectStats(c);
+    totalAll += s.total;
+    doneAll += s.done;
+  });
+  const pctAll = totalAll > 0 ? Math.round((doneAll / totalAll) * 100) : 0;
+
+  let subjectsHTML = Object.keys(CHECKLIST).map(courseName => {
+    const course = CHECKLIST[courseName];
+    const stats = getSubjectStats(courseName);
+    const pct = stats.total > 0 ? Math.round((stats.done / stats.total) * 100) : 0;
+    const isOpen = openSubjects[courseName] === true;
+
+    let groupsHTML = course.groups.map((g, gi) => {
+      let itemsHTML = g.items.map((item, ii) => {
+        const key = topicKey(courseName, gi, ii);
+        const checked = checkedTopics[key];
+        return `
+          <div class="topic-item">
+            <div class="cb ${checked ? 'checked' : ''}" onclick="toggleTopic('${key}')"></div>
+            <span class="topic-text ${checked ? 'done' : ''}">${esc(item)}</span>
+          </div>
+        `;
+      }).join('');
+      return `<div class="topic-group-title">${esc(g.title)}</div>${itemsHTML}`;
+    }).join('');
+
+    return `
+      <div class="subject-section">
+        <div class="subject-header-row" onclick="toggleSubject('${courseName}')">
+          <span class="subject-chevron ${isOpen ? 'open' : ''}">▶</span>
+          <span class="subject-dot ${course.cls}"></span>
+          <span class="subject-label">${esc(courseName)}</span>
+          <span class="subject-pct">${pct}%</span>
+          <div class="subject-bar-wrap">
+            <div class="subject-bar-fill ${course.cls}" style="width:${pct}%"></div>
+          </div>
+        </div>
+        <div class="subject-topics ${isOpen ? 'open' : ''}">
+          ${groupsHTML}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="card-label">Topic Checklist</div>
+    <h3 class="card-title" style="margin-bottom:0.8rem;">Finals Progress</h3>
+    <div class="overall-progress">
+      <div class="overall-stats">
+        <span>${doneAll} of ${totalAll} topics covered</span>
+        <span>${pctAll}%</span>
+      </div>
+      <div class="overall-bar">
+        <div class="overall-fill" style="width:${pctAll}%"></div>
+      </div>
+    </div>
+    ${subjectsHTML}
+  `;
+}
+
+function toggleTopic(key) {
+  checkedTopics[key] = !checkedTopics[key];
+  if (!checkedTopics[key]) delete checkedTopics[key];
+  saveChecked();
+  renderChecklist();
+}
+
+function toggleSubject(courseName) {
+  openSubjects[courseName] = !openSubjects[courseName];
+  saveOpenSubjects();
+  renderChecklist();
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+renderStatusBanner();
+renderDayView();
+renderTomorrowCard();
+renderChecklist();
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') navigateDay(-1);
+  if (e.key === 'ArrowRight') navigateDay(1);
+});
+</script>
+</body>
+</html>
