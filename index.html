@@ -592,6 +592,92 @@ body::before {
   box-shadow: 0 1px 4px var(--shadow);
 }
 
+/* ── Todo List ── */
+.todo-input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--warm-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.todo-input:focus {
+  border-color: var(--terracotta-light);
+}
+
+.todo-add-btn {
+  padding: 0.5rem 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--terracotta);
+  color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.todo-add-btn:hover {
+  background: var(--terracotta-light);
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+}
+
+.todo-item-text {
+  flex: 1;
+  font-size: 0.82rem;
+  color: var(--ink);
+}
+
+.todo-item-text.done {
+  text-decoration: line-through;
+  color: var(--ink-faint);
+  opacity: 0.6;
+}
+
+.todo-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-faint);
+  font-size: 0.75rem;
+  padding: 0.2rem;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.todo-item:hover .todo-delete {
+  opacity: 1;
+}
+
+.todo-delete:hover {
+  color: var(--red);
+}
+
+.todo-empty {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  text-align: center;
+  padding: 1rem 0;
+}
+
 /* ── Animations ── */
 @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
 @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
@@ -624,6 +710,7 @@ body::before {
 <main class="main-grid">
   <div class="left-col">
     <section class="card delay-1" id="dayViewCard"></section>
+    <section class="card delay-2" id="todoCard"></section>
   </div>
   <div class="right-col">
     <section class="card delay-3" id="checklistCard"></section>
@@ -787,56 +874,56 @@ const CHECKLIST = {
   'ELEC 275': {
     cls: 'elec',
     groups: [
-      { title: 'Week 1: Basic Circuit Concepts', items: [
+      { title: 'Ch. 2: Basic Circuit Concepts', items: [
         'Voltage, current, resistance definitions',
         'Ohm\'s law (V = IR)',
         'Power dissipation (P = VI, P = I²R, P = V²/R)',
         'Ideal voltage and current sources',
         'Series and parallel connections',
       ]},
-      { title: 'Week 2: Nodal and Mesh Analysis', items: [
+      { title: 'Ch. 3: Nodal and Mesh Analysis', items: [
         'Kirchhoff\'s voltage law (KVL)',
         'Kirchhoff\'s current law (KCL)',
         'Nodal analysis (node voltage method)',
         'Mesh analysis (mesh current method)',
         'Setting up and solving equations',
       ]},
-      { title: 'Week 3: Thevenin\'s and Max Power Transfer', items: [
+      { title: 'Ch. 3.6–3.7: Thevenin\'s and Max Power Transfer', items: [
         'Thevenin equivalent circuits (V_th and R_th)',
         'Norton equivalent circuits',
         'Finding Thevenin/Norton parameters',
         'Maximum power transfer theorem',
         'Load resistance calculation',
       ]},
-      { title: 'Week 4: Inductors and Capacitors', items: [
+      { title: 'Ch. 4.1: Inductors and Capacitors', items: [
         'Inductor equation V = L(di/dt)',
         'Inductor energy storage',
         'Capacitor equation I = C(dv/dt)',
         'Capacitor energy storage',
         'Initial conditions and transients',
       ]},
-      { title: 'Week 5: Complex Numbers', items: [
+      { title: 'App. A: Complex Numbers', items: [
         'Complex number form (a + jb)',
         'Complex arithmetic (+, ×, ÷)',
         'Rectangular to polar conversion',
         'Polar to rectangular conversion',
         'Euler\'s formula',
       ]},
-      { title: 'Week 6: Sinusoidal Sources', items: [
+      { title: 'Ch. 4.2–4.4: Sinusoidal Sources', items: [
         'Sinusoidal voltage: v(t) = V_m sin(ωt + φ)',
         'Peak amplitude and RMS values',
         'Angular frequency (ω) and frequency (f)',
         'Phase angle and phase shift',
         'Average power for sinusoids',
       ]},
-      { title: 'Week 7: Phasors and AC Analysis', items: [
+      { title: 'Ch. 4.4–4.6: Phasors and AC Analysis', items: [
         'Phasor representation of sinusoids',
         'Impedance: Z = R + jX',
         'Series impedance combinations',
         'Phasor form of Ohm\'s law: V = ZI',
         'Phasor nodal and mesh analysis',
       ]},
-      { title: 'Week 8: AC Analysis and Complex Power', items: [
+      { title: 'Ch. 7.1–7.3: AC Analysis and Complex Power', items: [
         'AC nodal analysis with phasors',
         'AC mesh analysis with phasors',
         'Real power: P = V_rms × I_rms × cos(θ)',
@@ -845,7 +932,7 @@ const CHECKLIST = {
         'Power factor: cos(θ)',
         'Complex power: S = P + jQ',
       ]},
-      { title: 'Week 9: Transformers and Impedance Matching', items: [
+      { title: 'Ch. 7.4: Transformers and Impedance Matching', items: [
         'Ideal transformer equations',
         'Turns ratio: n = N₁/N₂',
         'Voltage relationship: V₁/V₂ = N₁/N₂',
@@ -853,7 +940,7 @@ const CHECKLIST = {
         'Impedance transformation',
         'Impedance matching applications',
       ]},
-      { title: 'Week 10: Three-Phase Circuits', items: [
+      { title: 'Ch. 7.5: Three-Phase Circuits', items: [
         'Three-phase voltage generation (120° separation)',
         'Y (star) connection',
         'Δ (delta) connection',
@@ -861,7 +948,7 @@ const CHECKLIST = {
         'Balanced three-phase systems',
         'Three-phase power calculation',
       ]},
-      { title: 'Week 11: Magnetic Circuits', items: [
+      { title: 'Ch. 18: Magnetic Circuits', items: [
         'Magnetic field definition and units (Tesla)',
         'Magnetic flux: Φ = B × A',
         'Permeability and reluctance',
@@ -869,7 +956,7 @@ const CHECKLIST = {
         'Magnetic circuit analogies to electric circuits',
         'Magnetization curves',
       ]},
-      { title: 'Week 12: Energy Conversion and Electric Machines', items: [
+      { title: 'Ch. 19–20: Energy Conversion and Electric Machines', items: [
         'Energy stored in magnetic field',
         'Force on current-carrying conductor: F = BIℓ',
         'Torque in machines',
@@ -883,7 +970,7 @@ const CHECKLIST = {
   'COMP 352': {
     cls: 'comp352',
     groups: [
-      { title: 'Week 1: Algorithm Analysis', items: [
+      { title: 'Ch. 4: Algorithm Analysis', items: [
         'Big O notation (worst case)',
         'Big Omega notation (best case)',
         'Big Theta notation (average case)',
@@ -891,7 +978,7 @@ const CHECKLIST = {
         'Time and space complexity',
         'Comparing algorithm efficiency',
       ]},
-      { title: 'Weeks 1-2: Recursion', items: [
+      { title: 'Ch. 5: Recursion', items: [
         'Recursive function definition',
         'Base case and recursive case',
         'Recursive call stack',
@@ -900,14 +987,14 @@ const CHECKLIST = {
         'Merge sort and quick sort recursion',
         'Recursive complexity analysis',
       ]},
-      { title: 'Week 3: Arrays, Stacks, and Queues', items: [
+      { title: 'Ch. 3, 6: Arrays, Stacks, and Queues', items: [
         'Array access, insertion, deletion (time complexity)',
         'Stack (LIFO): push and pop operations',
         'Queue (FIFO): enqueue and dequeue operations',
         'Stack applications (parentheses matching, evaluation)',
         'Queue applications (scheduling, buffering)',
       ]},
-      { title: 'Week 4: Linked Lists', items: [
+      { title: 'Ch. 3: Linked Lists', items: [
         'Singly linked list structure and operations',
         'Doubly linked list (forward and backward pointers)',
         'Linked list insertion and deletion',
@@ -915,7 +1002,7 @@ const CHECKLIST = {
         'Circular linked lists',
         'Linked list vs array trade-offs',
       ]},
-      { title: 'Weeks 5-6: Trees', items: [
+      { title: 'Ch. 8: Trees', items: [
         'Binary tree structure and terminology',
         'Tree traversal: pre-order, in-order, post-order',
         'Binary search tree (BST) property',
@@ -924,7 +1011,7 @@ const CHECKLIST = {
         'AVL tree balancing',
         'Tree rotations (single and double)',
       ]},
-      { title: 'Weeks 6-7: Priority Queues and Heaps', items: [
+      { title: 'Ch. 9: Priority Queues and Heaps', items: [
         'Heap property (min-heap and max-heap)',
         'Array representation of heaps',
         'Heap insertion (bubble up)',
@@ -933,7 +1020,7 @@ const CHECKLIST = {
         'Heap sort algorithm',
         'Priority queue implementation',
       ]},
-      { title: 'Weeks 8-9: Hash Tables', items: [
+      { title: 'Ch. 10: Hash Tables', items: [
         'Hash function design and properties',
         'Collision resolution: chaining',
         'Collision resolution: open addressing',
@@ -941,7 +1028,7 @@ const CHECKLIST = {
         'Load factor and rehashing',
         'Hash table operations (search, insert, delete)',
       ]},
-      { title: 'Weeks 9-10: Search Trees', items: [
+      { title: 'Ch. 11: Search Trees', items: [
         'AVL tree height property',
         'AVL insertions and rebalancing',
         'AVL deletions and rebalancing',
@@ -949,7 +1036,7 @@ const CHECKLIST = {
         '2-3 trees and B-trees basics',
         'Search tree performance guarantees',
       ]},
-      { title: 'Weeks 9-10: Sorting', items: [
+      { title: 'Ch. 12: Sorting', items: [
         'Bubble sort, selection sort, insertion sort (O(n²))',
         'Merge sort (O(n log n), stable)',
         'Quick sort (O(n log n) average, O(n²) worst)',
@@ -958,7 +1045,7 @@ const CHECKLIST = {
         'Sorting stability',
         'Choosing appropriate sorting algorithm',
       ]},
-      { title: 'Weeks 10-12: Graphs', items: [
+      { title: 'Ch. 13–14: Graphs', items: [
         'Graph representation: adjacency list',
         'Graph representation: adjacency matrix',
         'Depth-first search (DFS) and applications',
@@ -973,13 +1060,13 @@ const CHECKLIST = {
   'COMP 335': {
     cls: 'comp335',
     groups: [
-      { title: 'Week 1: Intro to Theory of Computation', items: [
+      { title: 'Ch. 1: Intro to Theory of Computation', items: [
         'Alphabet and string definitions',
         'Language definition',
         'Finite automata motivation',
         'Deterministic vs nondeterministic behavior',
       ]},
-      { title: 'Week 2: Finite State Automata', items: [
+      { title: 'Ch. 2: Finite State Automata', items: [
         'Deterministic finite automaton (DFA) definition',
         'DFA states, transitions, accept states',
         'State diagrams',
@@ -987,49 +1074,49 @@ const CHECKLIST = {
         'Language of a DFA: L(M)',
         'DFA execution and string acceptance',
       ]},
-      { title: 'Week 3: Regular Expressions and Languages', items: [
+      { title: 'Ch. 3.1–3.2: Regular Expressions and Languages', items: [
         'Regular expression definition',
         'Union (∪), concatenation (·), Kleene star (*)',
         'Regex to NFA conversion',
         'Regex pattern matching applications',
       ]},
-      { title: 'Week 3: Regular Grammars', items: [
+      { title: 'Ch. 3.3: Regular Grammars', items: [
         'Context-free grammar (CFG) basics',
         'Regular grammar definition',
         'Right-linear and left-linear grammars',
         'Grammar to DFA conversion',
       ]},
-      { title: 'Week 4: Closure Properties of Regular Languages', items: [
+      { title: 'Ch. 4: Closure Properties of Regular Languages', items: [
         'Closure under union',
         'Closure under concatenation',
         'Closure under Kleene star',
         'Closure under complement and intersection',
         'Proof techniques using automata',
       ]},
-      { title: 'Week 5: Pumping Lemma for Regular Languages', items: [
+      { title: 'Ch. 4.3: Pumping Lemma for Regular Languages', items: [
         'Pumping lemma statement',
         'Proof by contradiction technique',
         'Showing languages are NOT regular',
         'Example: {aⁿbⁿ} is not regular',
       ]},
-      { title: 'Week 6: Context-Free Grammars', items: [
+      { title: 'Ch. 5: Context-Free Grammars', items: [
         'CFG definition: terminals, non-terminals, productions, start symbol',
         'Derivation and parse trees',
         'Language generation: L(G)',
         'Ambiguous vs unambiguous grammars',
         'CFG applications to parsing',
       ]},
-      { title: 'Week 7: Simplification of CFGs and Normal Forms', items: [
+      { title: 'Ch. 6: Simplification of CFGs and Normal Forms', items: [
         'Removing useless symbols (unreachable, non-generating)',
         'Removing ε-productions (nullable symbols)',
         'Removing unit productions',
         'Chomsky Normal Form (CNF): A → BC or A → a',
         'Converting CFG to CNF',
       ]},
-      { title: 'Week 8: Review', items: [
-        'Review Weeks 1-7 material',
+      { title: 'Ch. 1–7 Review', items: [
+        'Review Ch. 1–7 material',
       ]},
-      { title: 'Week 9: Push-Down Automata', items: [
+      { title: 'Ch. 7: Push-Down Automata', items: [
         'PDA definition: states, input, stack',
         'Stack operations: push, pop',
         'PDA transition: δ(q, a, Z) → (p, γ)',
@@ -1037,14 +1124,14 @@ const CHECKLIST = {
         'Nondeterministic PDA (NPDA)',
         'Acceptance by final state vs empty stack',
       ]},
-      { title: 'Week 9: Closure Properties and Pumping Lemma for CFLs', items: [
+      { title: 'Ch. 8: Closure Properties and Pumping Lemma for CFLs', items: [
         'Closure under union, concatenation, Kleene star',
         'NOT closed under complement and intersection',
         'Pumping lemma for CFLs',
         'Showing languages are NOT context-free',
         'Example: {aⁿbⁿcⁿ} is not context-free',
       ]},
-      { title: 'Week 11: Turing Machines', items: [
+      { title: 'Ch. 9: Turing Machines', items: [
         'Turing machine (TM) definition',
         'TM tape, read/write head, state machine',
         'Transition function: δ(q, a) → (p, b, D)',
@@ -1052,7 +1139,7 @@ const CHECKLIST = {
         'Language of a TM: L(M)',
         'TM execution and string acceptance',
       ]},
-      { title: 'Weeks 9.3, 10: Combining TMs and Turing\'s Thesis', items: [
+      { title: 'Ch. 9.3, 10: Combining TMs and Turing\'s Thesis', items: [
         'Multi-tape Turing machines',
         'Nondeterministic Turing machines',
         'TM equivalence (all variants compute same languages)',
@@ -1060,7 +1147,7 @@ const CHECKLIST = {
         'Computable functions and languages',
         'Universal Turing machine',
       ]},
-      { title: 'Weeks 10.4, 12.1: Decidability and the Halting Problem', items: [
+      { title: 'Ch. 10.4, 12.1: Decidability and the Halting Problem', items: [
         'Decidable language definition (recursive)',
         'Semidecidable language (recursively enumerable)',
         'Halting problem statement',
@@ -1610,11 +1697,63 @@ function toggleSubject(courseName) {
 }
 
 // ═══════════════════════════════════════════════════════
+// TODO LIST
+// ═══════════════════════════════════════════════════════
+let todoItems = [];
+
+function addTodo() {
+  const input = document.getElementById('todoInput');
+  const text = input.value.trim();
+  if (!text) return;
+  todoItems.push({ text, done: false, id: Date.now() });
+
+  input.value = '';
+  renderTodo();
+}
+
+function toggleTodo(id) {
+  const item = todoItems.find(t => t.id === id);
+  if (item) item.done = !item.done;
+
+  renderTodo();
+}
+
+function deleteTodo(id) {
+  todoItems = todoItems.filter(t => t.id !== id);
+
+  renderTodo();
+}
+
+function renderTodo() {
+  const el = document.getElementById('todoCard');
+  const itemsHTML = todoItems.length === 0
+    ? '<div class="todo-empty">No tasks yet. Add one above!</div>'
+    : todoItems.map(t => `
+        <div class="todo-item">
+          <div class="cb ${t.done ? 'checked' : ''}" onclick="toggleTodo(${t.id})"></div>
+          <span class="todo-item-text ${t.done ? 'done' : ''}">${esc(t.text)}</span>
+          <button class="todo-delete" onclick="deleteTodo(${t.id})">&#10005;</button>
+        </div>
+      `).join('');
+
+  el.innerHTML = `
+    <div class="card-label">To-Do</div>
+    <h3 class="card-title" style="margin-bottom:0.8rem;">My Tasks</h3>
+    <div class="todo-input-row">
+      <input class="todo-input" id="todoInput" type="text" placeholder="Add a task..." onkeydown="if(event.key==='Enter')addTodo()">
+      <button class="todo-add-btn" onclick="addTodo()">Add</button>
+    </div>
+    ${itemsHTML}
+  `;
+}
+
+// ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
 renderStatusBanner();
 renderDayView();
 renderChecklist();
+renderTodo();
 
 // Keyboard navigation
 document.addEventListener('keydown', e => {
