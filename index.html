@@ -1195,6 +1195,59 @@ function esc(s) {
   return d.innerHTML;
 }
 
+function parseSections(sectionsStr) {
+  if (!sectionsStr) return [];
+  const results = [];
+  const parts = sectionsStr.split(',').map(s => s.trim());
+  let currentPrefix = '';
+  for (const part of parts) {
+    let working = part;
+    if (/^Ch\.\s*/i.test(working)) {
+      currentPrefix = 'Ch. ';
+      working = working.replace(/^Ch\.\s*/i, '');
+    } else if (/^(Week|App|Practice|All|Weak|Timed)/i.test(working)) {
+      results.push(part);
+      currentPrefix = '';
+      continue;
+    }
+    // Range X.Y–X.Z (same major)
+    const rangeMatch = working.match(/^(\d+)\.(\d+)\s*[–\-]\s*(\d+)\.(\d+)$/);
+    if (rangeMatch) {
+      const [, majS, minS, majE, minE] = rangeMatch;
+      if (majS === majE) {
+        for (let i = parseInt(minS); i <= parseInt(minE); i++) {
+          results.push(`${currentPrefix}${majS}.${i}`);
+        }
+      } else {
+        results.push(`${currentPrefix}${working}`);
+      }
+      continue;
+    }
+    // Single section X.Y
+    if (/^\d+\.\d+$/.test(working)) {
+      results.push(`${currentPrefix}${working}`);
+      continue;
+    }
+    // Whole chapter range X–Y
+    const wholeRange = working.match(/^(\d+)\s*[–\-]\s*(\d+)$/);
+    if (wholeRange) {
+      const [, start, end] = wholeRange;
+      for (let i = parseInt(start); i <= parseInt(end); i++) {
+        results.push(`${currentPrefix}${i}`);
+      }
+      continue;
+    }
+    // Single whole chapter
+    if (/^\d+$/.test(working)) {
+      results.push(`${currentPrefix}${working}`);
+      continue;
+    }
+    // Fallback
+    results.push(currentPrefix ? `${currentPrefix}${working}` : part);
+  }
+  return results;
+}
+
 function topicKey(course, groupIdx, itemIdx) {
   return `${course}:${groupIdx}:${itemIdx}`;
 }
@@ -1341,14 +1394,17 @@ function renderDayPlanContent(plan, dateStr) {
 
   // Helper: get tasks for a block (from refs or manual tasks)
   function getBlockTasks(b) {
-    if (b.refs && CHECKLIST[b.course]) {
-      // Show checklist group titles (chapter/week numbers) as checkable items
-      return b.refs.map(gi => {
-        const group = CHECKLIST[b.course].groups[gi];
-        if (!group) return null;
-        return { text: group.title, key: 'group:' + b.course + ':' + gi, isRef: true, groupIdx: gi, course: b.course };
-      }).filter(Boolean);
-    } else if (b.tasks) {
+    if (b.sections) {
+      const sections = parseSections(b.sections);
+      if (sections.length > 0) {
+        return sections.map((s, si) => ({
+          text: s,
+          key: dayTaskKey(plan.day, 'section', b.course + ':' + s),
+          isRef: false
+        }));
+      }
+    }
+    if (b.tasks) {
       return b.tasks.map((t, ti) => ({ text: t, key: dayTaskKey(plan.day, 'manual', b.course + ti), isRef: false }));
     }
     return [];
@@ -1359,14 +1415,11 @@ function renderDayPlanContent(plan, dateStr) {
     let tasksDone = 0;
 
     let tasksHTML = items.map(item => {
-      const checked = item.isRef ? checkedDayTasks[item.key] : checkedDayTasks[item.key];
+      const checked = checkedDayTasks[item.key];
       if (checked) tasksDone++;
-      const toggleFn = item.isRef
-        ? `toggleGroupFromDay('${item.key}', '${item.course}', ${item.groupIdx})`
-        : `toggleDayTask('${item.key}')`;
       return `
         <div class="study-task">
-          <div class="cb ${checked ? 'checked' : ''}" onclick="${toggleFn}"></div>
+          <div class="cb ${checked ? 'checked' : ''}" onclick="toggleDayTask('${item.key}')"></div>
           <span class="study-task-text ${checked ? 'done' : ''}">${esc(item.text)}</span>
         </div>
       `;
