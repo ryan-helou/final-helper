@@ -1699,14 +1699,15 @@ function toggleSubject(courseName) {
 // ═══════════════════════════════════════════════════════
 // TODO LIST
 // ═══════════════════════════════════════════════════════
-let todoItems = [];
+let todoItems = JSON.parse(localStorage.getItem('fh_todos') || '[]');
+function saveTodos() { localStorage.setItem('fh_todos', JSON.stringify(todoItems)); }
 
 function addTodo() {
   const input = document.getElementById('todoInput');
   const text = input.value.trim();
   if (!text) return;
   todoItems.push({ text, done: false, id: Date.now() });
-
+  saveTodos();
   input.value = '';
   renderTodo();
 }
@@ -1714,13 +1715,13 @@ function addTodo() {
 function toggleTodo(id) {
   const item = todoItems.find(t => t.id === id);
   if (item) item.done = !item.done;
-
+  saveTodos();
   renderTodo();
 }
 
 function deleteTodo(id) {
   todoItems = todoItems.filter(t => t.id !== id);
-
+  saveTodos();
   renderTodo();
 }
 
