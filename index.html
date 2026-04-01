@@ -730,140 +730,142 @@ const EXAMS = [
 
 const PLAN = [
   { day: 1, date: '2026-03-30', label: 'Sunday, March 30', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2.1–2.3', topic: 'Basic Circuit Concepts', refs: [0] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 4.1–4.2', topic: 'Algorithm Analysis', refs: [0] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'Algorithms + Recursion', refs: [0, 1] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Circuit Concepts', refs: [0] },
   ]},
   { day: 2, date: '2026-03-31', label: 'Monday, March 31', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L0–L3', topic: 'Intro + FSA Basics', refs: [0, 1] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'Week 1', topic: 'Sustainable Development Overview', refs: [0] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Intro & Preliminaries', refs: [0] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Intro to Sustainable Development', refs: [0] },
   ]},
   { day: 3, date: '2026-04-01', label: 'Tuesday, April 1', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2.4–2.7, 3.1–3.2', topic: 'Circuits + Nodal Analysis', refs: [0, 1] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 5.1–5.3, 3.1, 6.1–6.2', topic: 'Recursion + Stacks & Queues', refs: [1, 2] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'Stacks + Queues', refs: [2, 3] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Nodal Analysis', refs: [1] },
   ]},
   { day: 4, date: '2026-04-02', label: 'Wednesday, April 2', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L1–L7', topic: 'Regex, DFAs, NFAs', refs: [1, 2, 3] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'Weeks 3, 5', topic: 'Environmental Issues + Global Warming', refs: [1, 2] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Finite Automata (L1\u2013L3)', refs: [1] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Environmental Issues', refs: [1] },
   ]},
   { day: 5, date: '2026-04-03', label: 'Thursday, April 3', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 3.2–3.5', topic: 'Nodal + Mesh Analysis', refs: [1] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 3.2–3.3', topic: 'Linked Lists', refs: [3] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'LinkedLists + ArrayLists', refs: [4, 5] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Mesh Analysis', refs: [2] },
   ]},
   { day: 6, date: '2026-04-04', label: 'Friday, April 4', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L6–L10', topic: 'Grammars, Closure, Pumping Lemma', refs: [3, 4, 5] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'Weeks 8, 10', topic: 'LCA + Risk Assessment', refs: [3, 4] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Regular Expressions (L4\u2013L5)', refs: [2] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Global Warming', refs: [2] },
   ]},
   { day: 7, date: '2026-04-05', label: 'Saturday, April 5', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 3.6–3.7, 4.1', topic: 'Thevenin/Norton + L/C', refs: [2, 3] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 3.4, 8.1–8.2', topic: 'Linked Lists + Trees', refs: [3, 4] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'Trees + PriorityQueues', refs: [6, 7] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Thevenin\'s + Inductors/Capacitors', refs: [3, 4] },
   ]},
   { day: 8, date: '2026-04-06', label: 'Sunday, April 6', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L11–L13', topic: 'CFGs + Simplification', refs: [6, 7] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'Weeks 1–5 review', topic: 'Review + Case Studies', refs: [0, 1, 2] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Grammars (L6\u2013L7)', refs: [3] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Life Cycle Assessment', refs: [3] },
   ]},
   { day: 9, date: '2026-04-07', label: 'Monday, April 7', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'App. A, Ch. 4.2–4.4', topic: 'Complex Numbers + Sinusoidal', refs: [4, 5] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 8.3–8.4', topic: 'BSTs & Balanced Trees', refs: [4] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'Heaps + Maps', refs: [8, 9] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Complex Numbers + Sinusoidal Sources', refs: [5, 6] },
   ]},
   { day: 10, date: '2026-04-08', label: 'Tuesday, April 8', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L14–L15', topic: 'Push-Down Automata', refs: [8] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'Practice Exam 1', topic: 'Timed Practice', tasks: ['Complete practice exam 1'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Closure & Elementary Questions (L8\u2013L9)', refs: [4] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Risk Assessment', refs: [4] },
   ]},
   { day: 11, date: '2026-04-09', label: 'Wednesday, April 9', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4.4–4.6', topic: 'Phasors & AC Analysis', refs: [6] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 9.1–9.3', topic: 'Heaps & Priority Queues', refs: [5] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'HashTables + OrderedMaps', refs: [10, 11] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Phasor Representation', refs: [7] },
   ]},
   { day: 12, date: '2026-04-10', label: 'Thursday, April 10', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L16–L17', topic: 'CFL Closure + Pumping Lemma', refs: [9] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'Practice Exam 2', topic: 'Timed Practice', tasks: ['Complete practice exam 2'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Pumping Lemma (L10)', refs: [5] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Sustainable Environmental Management', refs: [5] },
   ]},
   { day: 13, date: '2026-04-11', label: 'Friday, April 11', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4.4–4.6, 7.1–7.3', topic: 'AC Analysis + Complex Power', refs: [6, 7] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 10.1–10.3', topic: 'Hash Tables', refs: [6] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'BSTs + AVLTrees', refs: [12, 13] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Complex Power and Power Factor', refs: [8] },
   ]},
   { day: 14, date: '2026-04-12', label: 'Saturday, April 12', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L18–L21', topic: 'Turing Machines', refs: [10] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'Practice Exam 3', topic: 'Full Practice Exam', tasks: ['Complete full practice exam 3'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Context-Free Grammars (L11\u2013L12)', refs: [6] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Full Review', refs: [0, 1, 2, 3, 4, 5] },
   ]},
   { day: 15, date: '2026-04-13', label: 'Sunday, April 13', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.4', topic: 'Transformers & Impedance Matching', refs: [8] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 11.1–11.3', topic: 'Search Trees (AVL, Red-Black)', refs: [7] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'MergeSort + QuickSort + Sorting-LowerBound', refs: [14, 15, 16] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Transformers', refs: [9] },
   ]},
   { day: 16, date: '2026-04-14', label: 'Monday, April 14', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L19–L21', topic: 'TM Variations & Church-Turing', refs: [10] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'All weeks', topic: 'Full Course Review', refs: [0, 1, 2, 3, 4, 5] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'Full Review', refs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Normal Forms (L13)', refs: [7] },
   ]},
   { day: 17, date: '2026-04-15', label: 'Tuesday, April 15', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.5', topic: 'Three-Phase Circuits', refs: [9] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'Ch. 12.1–12.2', topic: 'Sorting Algorithms', refs: [8] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'Full Review', refs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Three-Phase Circuits', refs: [10] },
   ]},
   { day: 18, date: '2026-04-16', label: 'Wednesday, April 16',
     note: 'COMP 352 FINAL EXAM TOMORROW', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'L18–L21', topic: 'Decidability & Undecidability', refs: [10] },
-    { course: 'COMP 352', cls: 'comp352', sections: 'All chapters', topic: 'Intensive Final Review', tasks: ['Review all data structures', 'Review all algorithms', 'Practice problem set'] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'Final Review', tasks: ['Review all topics', 'Practice problems'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Push-Down Automata (L14\u2013L15)', refs: [8] },
   ]},
   { day: 19, date: '2026-04-17', label: 'Thursday, April 17',
     note: 'COMP 352 FINAL EXAM TODAY', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.5', topic: 'Three-Phase Circuits (cont.)', refs: [9] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'L19', topic: "Turing's Thesis", refs: [10] },
+    { course: 'COMP 352', cls: 'comp352', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Magnetic Circuits', refs: [11] },
   ]},
   { day: 20, date: '2026-04-18', label: 'Friday, April 18', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2, 3, 7', topic: 'Practice Problem Set 1', tasks: ['Practice DC circuit problems', 'Practice power problems'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'CFL Closure & Pumping Lemma (L16\u2013L17)', refs: [9] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Full Review', refs: [0, 1, 2, 3, 4, 5] },
   ]},
   { day: 21, date: '2026-04-19', label: 'Saturday, April 19',
     note: 'ENGR 202 FINAL EXAM TOMORROW', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–12', topic: 'Full Problem-Solving Session', tasks: ['Mixed problem types', 'Proof technique practice'] },
-    { course: 'ENGR 202', cls: 'engr', sections: 'All weeks', topic: 'Final Exam Prep', tasks: ['Complete course review', 'Review case studies'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Energy Conversion', refs: [12] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'Final Review', tasks: ['Review all slides', 'Practice exam'] },
   ]},
   { day: 22, date: '2026-04-20', label: 'Sunday, April 20',
     note: 'ENGR 202 FINAL EXAM TODAY', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4, 7.1–7.5', topic: 'Practice Problem Set 2', tasks: ['Practice AC analysis problems', 'Practice power calculations'] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'L0–L10', topic: 'Regular Languages Review', refs: [0, 1, 2, 3, 4, 5] },
+    { course: 'ENGR 202', cls: 'engr', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Electric Machines', refs: [13] },
   ]},
   { day: 23, date: '2026-04-21', label: 'Monday, April 21', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 4.2–4.6', topic: 'AC Deep Dive', refs: [5, 6] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'L1–L10', topic: 'Automata Mastery', refs: [1, 2, 3, 4, 5] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Turing Machines (L18\u2013L21)', refs: [10] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Review: Circuits + Nodal + Mesh', refs: [0, 1, 2] },
   ]},
   { day: 24, date: '2026-04-22', label: 'Tuesday, April 22', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.1–7.3', topic: 'Power Analysis Deep Dive', refs: [7] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'L11–L17', topic: 'Context-Free Languages Mastery', refs: [6, 7, 8, 9] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Review: Thevenin + Inductors + Complex', refs: [3, 4, 5, 6] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Review: Intro + Finite Automata', refs: [0, 1] },
   ]},
   { day: 25, date: '2026-04-23', label: 'Wednesday, April 23', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 7.4–7.5', topic: 'Transformers + Three-Phase', refs: [8, 9] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'L18–L21', topic: 'Turing Machines Mastery', refs: [10] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Review: Phasors + Power + Transformers', refs: [7, 8, 9] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Review: RegEx + Grammars + Closure', refs: [2, 3, 4] },
   ]},
   { day: 26, date: '2026-04-24', label: 'Thursday, April 24', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 18.1–18.5', topic: 'Magnetic Circuits', refs: [10] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'L18–L21', topic: 'Decidability Deep Dive', refs: [10] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Review: Three-Phase + Magnetic + Machines', refs: [10, 11, 12, 13] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Review: Pumping Lemma + CFGs + Normal Forms', refs: [5, 6, 7] },
   ]},
   { day: 27, date: '2026-04-25', label: 'Friday, April 25', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 19–20', topic: 'Electric Machines', refs: [11] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–12', topic: 'All Topics Practice', tasks: ['Mixed problem set', 'Confidence building'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Practice Exam 1', tasks: ['Complete timed practice exam'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Review: PDAs + CFLs', refs: [8, 9] },
   ]},
   { day: 28, date: '2026-04-26', label: 'Saturday, April 26', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Practice Exam 1 (timed)', tasks: ['Complete full timed practice exam'] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'Weak areas', topic: 'Targeted Problem-Solving', tasks: ['Identify and fix weak areas'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Practice Exam 2', tasks: ['Complete timed practice exam'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Review: Turing Machines', refs: [10] },
   ]},
   { day: 29, date: '2026-04-27', label: 'Sunday, April 27', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Practice Exam 2 (timed)', tasks: ['Complete full timed practice exam'] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'Weak areas', topic: 'Final Gap Review', tasks: ['Review and fix remaining gaps'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Weak Areas Deep Dive', tasks: ['Identify and fix weak areas'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Mixed Practice', tasks: ['Mixed problem set', 'Proof practice'] },
   ]},
   { day: 30, date: '2026-04-28', label: 'Monday, April 28', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Review + Problem Solving', tasks: ['Practice selected problems', 'Clarify remaining questions'] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'Ch. 1–12', topic: 'Final Practice', tasks: ['Final mixed problem set'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'Problem Solving + Formulas', tasks: ['Practice problems', 'Prepare formula sheet'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Weak Areas Deep Dive', tasks: ['Identify and fix weak areas'] },
   ]},
   { day: 31, date: '2026-04-29', label: 'Tuesday, April 29',
-    note: 'COMP 335 FINAL EXAM day after tomorrow', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: 'Ch. 2–4, 7, 18–20', topic: 'Light Review + Formulas', tasks: ['Prepare formula sheet', 'Review key concepts'] },
-    { course: 'COMP 335', cls: 'comp335', sections: 'All topics', topic: 'Final Review', tasks: ['Final review of handwritten notes', 'Confidence check'] },
+    note: 'ELEC 275 FINAL EXAM TOMORROW', blocks: [
+    { course: 'ELEC 275', cls: 'elec', topic: 'Light Review', tasks: ['Review formula sheet', 'Review key concepts'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Full Review', refs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
   ]},
   { day: 32, date: '2026-04-30', label: 'Wednesday, April 30',
     note: 'ELEC 275 FINAL EXAM TODAY', blocks: [
-    { course: 'ELEC 275', cls: 'elec', sections: '', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
+    { course: 'ELEC 275', cls: 'elec', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'Final Review', tasks: ['Review all slides', 'Confidence check'] },
   ]},
   { day: 33, date: '2026-05-01', label: 'Thursday, May 1',
     note: 'COMP 335 FINAL EXAM TODAY', blocks: [
-    { course: 'COMP 335', cls: 'comp335', sections: '', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
+    { course: 'COMP 335', cls: 'comp335', topic: 'FINAL EXAM DAY', tasks: ['Execute with confidence'] },
   ]},
 ];
 
@@ -874,180 +876,142 @@ const CHECKLIST = {
   'ELEC 275': {
     cls: 'elec',
     groups: [
-      { title: 'Basic Circuit Concepts', items: [
-        'Ch. 2.1', 'Ch. 2.2', 'Ch. 2.3', 'Ch. 2.4', 'Ch. 2.5', 'Ch. 2.6', 'Ch. 2.7',
+      { title: 'Circuit Concepts', items: [
+        'Slide 1 \u2013 Circuit Concepts (2.1\u20132.7)',
       ]},
-      { title: 'Nodal and Mesh Analysis', items: [
-        'Ch. 3.1', 'Ch. 3.2', 'Ch. 3.3', 'Ch. 3.4', 'Ch. 3.5',
+      { title: 'Nodal Analysis', items: [
+        'Slide 2 \u2013 Nodal Analysis (3.1\u20133.6)',
       ]},
-      { title: 'Thevenin\'s and Max Power Transfer', items: [
-        'Ch. 3.6', 'Ch. 3.7',
+      { title: 'Mesh Analysis', items: [
+        'Slide 3 \u2013 Mesh Analysis (3.1\u20133.6)',
+      ]},
+      { title: 'Thevenin\'s + Max Power Transfer', items: [
+        'Slide 4 \u2013 Thevenin\'s + Max Power Transfer (3.6, 3.7)',
       ]},
       { title: 'Inductors and Capacitors', items: [
-        'Ch. 4.1',
+        'Slide 5 \u2013 Inductors and Capacitors (4.1)',
       ]},
       { title: 'Complex Numbers', items: [
-        'App. A',
+        'Slide 6 \u2013 Complex Numbers (App. A)',
       ]},
       { title: 'Sinusoidal Sources', items: [
-        'Ch. 4.2', 'Ch. 4.3', 'Ch. 4.4',
+        'Slide 7 \u2013 Sinusoidal Sources (4.2)',
       ]},
-      { title: 'Phasors and AC Analysis', items: [
-        'Ch. 4.4', 'Ch. 4.5', 'Ch. 4.6',
+      { title: 'Phasor Representation', items: [
+        'Slide 8 \u2013 Phasor Representation, Nodal & Mesh (4.4\u20134.6)',
       ]},
-      { title: 'AC Analysis and Complex Power', items: [
-        'Ch. 7.1', 'Ch. 7.2', 'Ch. 7.3',
+      { title: 'Complex Power and Power Factor', items: [
+        'Slide 9 \u2013 Complex Power and Power Factor (7.1\u20137.3)',
       ]},
       { title: 'Transformers and Impedance Matching', items: [
-        'Ch. 7.4',
+        'Slide 10 \u2013 Transformers and Impedance Matching (7.4)',
       ]},
       { title: 'Three-Phase Circuits', items: [
-        'Ch. 7.5',
+        'Slide 11 \u2013 Three-Phase Circuits (7.5)',
       ]},
       { title: 'Magnetic Circuits', items: [
-        'Ch. 18.1', 'Ch. 18.2', 'Ch. 18.3', 'Ch. 18.4', 'Ch. 18.5',
+        'Slide 12 \u2013 Magnetic Circuits (18.1, 18.2)',
       ]},
-      { title: 'Energy Conversion and Electric Machines', items: [
-        'Ch. 19', 'Ch. 20',
+      { title: 'Energy Conversion', items: [
+        'Slide 13 \u2013 Energy Conversion (18.5)',
+      ]},
+      { title: 'Electric Machines', items: [
+        'Slide 14 \u2013 Electric Machines (19.1\u201319.8, 20.4)',
       ]},
     ]
   },
   'COMP 352': {
     cls: 'comp352',
     groups: [
-      { title: 'Algorithm Analysis', items: [
-        'Ch. 4.1', 'Ch. 4.2',
-      ]},
-      { title: 'Recursion', items: [
-        'Ch. 5.1', 'Ch. 5.2', 'Ch. 5.3',
-      ]},
-      { title: 'Arrays, Stacks, and Queues', items: [
-        'Ch. 3.1', 'Ch. 6.1', 'Ch. 6.2',
-      ]},
-      { title: 'Linked Lists', items: [
-        'Ch. 3.2', 'Ch. 3.3', 'Ch. 3.4',
-      ]},
-      { title: 'Trees', items: [
-        'Ch. 8.1', 'Ch. 8.2', 'Ch. 8.3', 'Ch. 8.4',
-      ]},
-      { title: 'Priority Queues and Heaps', items: [
-        'Ch. 9.1', 'Ch. 9.2', 'Ch. 9.3',
-      ]},
-      { title: 'Hash Tables', items: [
-        'Ch. 10.1', 'Ch. 10.2', 'Ch. 10.3',
-      ]},
-      { title: 'Search Trees', items: [
-        'Ch. 11.1', 'Ch. 11.2', 'Ch. 11.3',
-      ]},
-      { title: 'Sorting', items: [
-        'Ch. 12.1', 'Ch. 12.2',
-      ]},
-      { title: 'Graphs', items: [
-        'Ch. 13', 'Ch. 14',
-      ]},
+      { title: 'Analysis of Algorithms', items: ['Analysis-of-Algorithms'] },
+      { title: 'Recursion', items: ['Recursion'] },
+      { title: 'Stacks', items: ['Stacks'] },
+      { title: 'Queues', items: ['Queues'] },
+      { title: 'LinkedLists and Iterators', items: ['LinkedLists and Iterators'] },
+      { title: 'ArrayLists, NodeLists, and Sequences', items: ['ArrayLists, NodeLists, and Sequences'] },
+      { title: 'Trees', items: ['Trees'] },
+      { title: 'PriorityQueues', items: ['PriorityQueues'] },
+      { title: 'Heaps', items: ['Heaps'] },
+      { title: 'Maps', items: ['Maps'] },
+      { title: 'HashTables', items: ['HashTables'] },
+      { title: 'OrderedMaps and Dictionaries', items: ['OrderedMaps and Dictionaries'] },
+      { title: 'BinarySearchTrees', items: ['BinarySearchTrees'] },
+      { title: 'AVLTrees', items: ['AVLTrees'] },
+      { title: 'MergeSort', items: ['MergeSort'] },
+      { title: 'QuickSort', items: ['QuickSort'] },
+      { title: 'Sorting-LowerBound', items: ['Sorting-LowerBound'] },
     ]
   },
   'COMP 335': {
     cls: 'comp335',
     groups: [
       { title: 'Intro & Preliminaries', items: [
-        'L0 – Some Advice',
-        'L01 – Mathematical Preliminaries',
+        'L0 \u2013 Some Advice',
+        'L01 \u2013 Mathematical Preliminaries',
       ]},
       { title: 'Finite Automata', items: [
-        'L1 – DFA',
-        'L2 – NFA',
-        'L3 – NFA2DFA',
+        'L1 \u2013 DFA',
+        'L2 \u2013 NFA',
+        'L3 \u2013 NFA2DFA',
       ]},
       { title: 'Regular Expressions & Languages', items: [
-        'L4 – Regular Expressions',
-        'L5 – RegEx & Regular Languages',
+        'L4 \u2013 Regular Expressions',
+        'L5 \u2013 RegEx & Regular Languages',
       ]},
       { title: 'Grammars', items: [
-        'L6 – Grammars',
-        'L7 – Regular Grammars',
+        'L6 \u2013 Grammars',
+        'L7 \u2013 Regular Grammars',
       ]},
       { title: 'Closure & Elementary Questions', items: [
-        'L8 – Closure Properties of Regular Languages',
-        'L9 – Elementary Questions about Regular Languages',
+        'L8 \u2013 Closure Properties of Regular Languages',
+        'L9 \u2013 Elementary Questions about Regular Languages',
       ]},
       { title: 'Pumping Lemma for Regular Languages', items: [
-        'L10 – Pumping Lemma for Regular Languages',
+        'L10 \u2013 Pumping Lemma for Regular Languages',
       ]},
       { title: 'Context-Free Grammars', items: [
-        'L11 – CFG',
-        'L12 – Parsing and Ambiguity',
+        'L11 \u2013 CFG',
+        'L12 \u2013 Parsing and Ambiguity',
       ]},
       { title: 'Normal Forms', items: [
-        'L13 – Normal Forms',
+        'L13 \u2013 Normal Forms',
       ]},
       { title: 'Push-Down Automata', items: [
-        'L14 – PDAs',
-        'L15 – NPDAs equiv to CFGs and DCFLs',
+        'L14 \u2013 PDAs',
+        'L15 \u2013 NPDAs equiv to CFGs and DCFLs',
       ]},
       { title: 'CFLs: Closure & Pumping Lemma', items: [
-        'L16 – Closure Properties of CFLs',
-        'L17 – PL for CFLs',
+        'L16 \u2013 Closure Properties of CFLs',
+        'L17 \u2013 PL for CFLs',
       ]},
       { title: 'Turing Machines', items: [
-        'L18 – Turing Machines: Introduction',
-        'L19 – Turing Machines: Church-Turing Thesis',
-        'L20 – Turing Machines: Transducers',
-        'L21 – Turing Machines: Variations and UTM',
+        'L18 \u2013 Turing Machines: Introduction',
+        'L19 \u2013 Turing Machines: Church-Turing Thesis',
+        'L20 \u2013 Turing Machines: Transducers',
+        'L21 \u2013 Turing Machines: Variations and UTM',
       ]},
     ]
   },
   'ENGR 202': {
     cls: 'engr',
     groups: [
-      { title: 'Weeks 1-2: Sustainable Development Concepts', items: [
-        'Definition: meeting present needs without compromising future',
-        'Sustainable development vs economic development',
-        'Role of engineers in sustainability',
-        'Triple bottom line: economic, social, environmental',
-        'Course objectives and case studies',
+      { title: 'Intro to Sustainable Development', items: [
+        'Slide 1 \u2013 Introduction to Sustainable Development and Engineering',
       ]},
-      { title: 'Weeks 3-4: Overview of Environmental Issues', items: [
-        'Global environmental challenges overview',
-        'Air quality and emissions',
-        'Water and soil degradation',
-        'Biodiversity loss and habitat destruction',
-        'Resource depletion and consumption patterns',
+      { title: 'Environmental Issues', items: [
+        'Slide 2 \u2013 Overview of Environmental Issues',
       ]},
-      { title: 'Weeks 5-6: Global Warming and Greenhouse Effect', items: [
-        'Greenhouse effect mechanism',
-        'Greenhouse gases: CO₂, CH₄, N₂O, CFCs',
-        'Global warming and temperature rise',
-        'Climate change impacts and consequences',
-        'Carbon cycle and anthropogenic sources',
-        'Mitigation and adaptation strategies',
+      { title: 'Global Warming', items: [
+        'Slide 3 \u2013 Global Warming and the Greenhouse Effect',
       ]},
-      { title: 'Weeks 8-9: Life Cycle Assessment (LCA)', items: [
-        'LCA definition and purpose',
-        'Goal and scope definition',
-        'Functional unit and system boundaries',
-        'Life cycle inventory (LCI): materials, energy, emissions',
-        'Impact assessment categories: GWP, AP, EP, etc.',
-        'LCA interpretation and results communication',
-        'LCA applications to products and processes',
+      { title: 'Life Cycle Assessment', items: [
+        'Slide 4 \u2013 Environmental Life Cycle Assessment',
       ]},
-      { title: 'Weeks 10-11: Risk Assessment', items: [
-        'Risk definition: probability × consequence',
-        'Hazard identification and analysis',
-        'Risk probability and severity estimation',
-        'Risk mitigation strategies and controls',
-        'Risk monitoring and management',
-        'Risk communication to stakeholders',
-        'Emergency response planning',
+      { title: 'Risk Assessment', items: [
+        'Slide 5 \u2013 Risk Assessment',
       ]},
-      { title: 'Week 12: Sustainable Environmental Management', items: [
-        'Environmental management systems',
-        'Environmental policy and objectives',
-        'Operational controls and monitoring',
-        'Sustainability case studies and examples',
-        'Best practices and lessons learned',
-        'Trade-offs in sustainability decisions',
-        'Implementation of sustainable solutions',
+      { title: 'Sustainable Environmental Management', items: [
+        'Slide 6 \u2013 Sustainable Environmental Management',
       ]},
     ]
   },
@@ -1328,8 +1292,26 @@ function renderDayPlanContent(plan, dateStr) {
   else if (isPast && isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--sage);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">DONE</span>';
   else if (isPast && !isDone) tagHTML = '<span style="font-size:0.7rem;font-weight:700;background:var(--terracotta-light);color:white;padding:0.15rem 0.5rem;border-radius:99px;margin-left:0.5rem;">MISSED</span>';
 
-  // Helper: get tasks for a block by matching parsed sections to checklist items
+  // Helper: get tasks for a block from refs, sections, or manual tasks
   function getBlockTasks(b) {
+    // 1. refs: pull individual items from checklist groups
+    if (b.refs && CHECKLIST[b.course]) {
+      const tasks = [];
+      const seen = new Set();
+      b.refs.forEach(gi => {
+        const group = CHECKLIST[b.course].groups[gi];
+        if (!group) return;
+        group.items.forEach((item, ii) => {
+          const tk = topicKey(b.course, gi, ii);
+          if (!seen.has(tk)) {
+            seen.add(tk);
+            tasks.push({ text: item, key: tk, isTopic: true });
+          }
+        });
+      });
+      if (tasks.length > 0) return tasks;
+    }
+    // 2. sections: parse and match to checklist items
     if (b.sections) {
       const sections = parseSections(b.sections);
       if (sections.length > 0) {
@@ -1345,6 +1327,7 @@ function renderDayPlanContent(plan, dateStr) {
         if (tasks.length > 0) return tasks;
       }
     }
+    // 3. manual tasks
     if (b.tasks) {
       return b.tasks.map((t, ti) => ({ text: t, key: dayTaskKey(plan.day, 'manual', b.course + ti), isTopic: false }));
     }
