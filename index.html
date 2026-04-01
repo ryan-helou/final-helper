@@ -1386,14 +1386,8 @@ function renderDayPlanContent(plan, dateStr) {
   let markDoneHTML = '';
   const autoComplete = allDayTasks > 0 && allDayDone === allDayTasks;
   if (autoComplete && !isDone) {
-    // Auto-mark complete if all tasks checked
     completedDays[dateStr] = true;
     saveCompletedDays();
-    markDoneHTML = `<button class="btn" style="margin-top:0.8rem;width:100%;background:var(--sage-bg);color:var(--sage);cursor:pointer;border:1.5px solid var(--sage-light);" onclick="unmarkDayDone('${dateStr}')">All done! (undo)</button>`;
-  } else if ((isToday || isPast) && !isDone) {
-    markDoneHTML = `<button class="btn btn-sage" style="margin-top:0.8rem;width:100%;" onclick="markDayDone('${dateStr}')">Mark as completed</button>`;
-  } else if (isDone) {
-    markDoneHTML = `<button class="btn" style="margin-top:0.8rem;width:100%;background:var(--cream);color:var(--ink-light);cursor:pointer;" onclick="unmarkDayDone('${dateStr}')">Undo completed</button>`;
   }
 
   return `
