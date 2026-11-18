@@ -1,18 +1,19 @@
-# 📚 Final Helper
+# Final Helper
 
-*A single static page that turns four Concordia finals into a day-by-day study plan and tracks whether you're keeping up.*
+A one-page study planner for four university final exams, with a daily schedule and a checklist to track progress.
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+It was built for one student's Winter 2026 finals at Concordia University: four courses, with exams falling within about two weeks of each other. The page lays out a day-by-day study plan from March 30 to May 1 and keeps track of whether you are keeping up. It works in any web browser with nothing to install, and your progress is saved in that browser.
 
-Winter 2026, four exams inside two weeks:
+## What you can do with it
 
-- COMP 352, Data Structures & Algorithms — April 17
-- ENGR 202, Sustainable Development — April 20
-- ELEC 275, Principles of Electrical Engineering — April 30
-- COMP 335, Theoretical Computer Science — May 1
+- See one study day at a time, with the exact topics to cover for each course, and move between days with the arrow keys.
+- Tick off topics in a master checklist; ticking a topic in the daily plan updates the checklist too, and the other way around.
+- Watch a countdown to each exam.
+- See whether you are behind, on track or ahead, based on the days you've completed.
+- Keep a short personal to-do list on the same page.
 
-The plan runs 33 days, March 30 through May 1, two courses a day at 3.5 hours. The left card shows one day at a time, navigable by arrow keys or the dot strip, listing each subject's exact topics: ELEC 275 by chapter section (2.1–2.7 up through electric machines in 19–20), COMP 335 by its L0–L21 lectures (DFAs to Turing machines), COMP 352 by structure, ENGR 202 by its six slide decks. The right card is the master topic checklist, and because each day's study blocks reference checklist groups directly, ticking a topic in one place updates the other.
+The course outlines it was built from are included in the repository.
 
-A banner up top counts down to each exam and marks you behind, on-track, or ahead based on how many past days you've actually checked off. There's also a scratch to-do list.
+## Try it
 
-It's all one `index.html` — data, CSS, and JS inline — with progress kept in `localStorage`, so no build step and no backend. The course outlines and slide lists it was built from sit in the repo next to it.
+https://final-helper.vercel.app
