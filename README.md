@@ -6,6 +6,8 @@
 
 <a href="https://final-helper.vercel.app"><img alt="Open final-helper.vercel.app" src="https://img.shields.io/badge/Open-final--helper.vercel.app-24292f?style=for-the-badge"></a>
 
+<!-- facts --><img alt="Built for: Concordia, Winter 2026" src="https://img.shields.io/badge/Built_for-Concordia,_Winter_2026-24292f?style=for-the-badge"> <img alt="Plan runs: Mar 30 to May 1" src="https://img.shields.io/badge/Plan_runs-Mar_30_to_May_1-24292f?style=for-the-badge"> <img alt="Progress: saved in your browser" src="https://img.shields.io/badge/Progress-saved_in_your_browser-24292f?style=for-the-badge">
+
 </div>
 
 <br>
