@@ -21,5 +21,3 @@ I built it for my Winter 2026 finals at Concordia University: four courses, with
 - Watch a countdown to each exam.
 - See whether you are behind, on track or ahead, based on the days you've completed.
 - Keep a short personal to-do list on the same page.
-
-The course outlines it was built from are included in the repository.
