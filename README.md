@@ -12,7 +12,7 @@
 
 <br>
 
-It was built for one student's Winter 2026 finals at Concordia University: four courses, with exams falling within about two weeks of each other. The page lays out a day-by-day study plan from March 30 to May 1 and keeps track of whether you are keeping up. It works in any web browser with nothing to install, and your progress is saved in that browser.
+I built it for my Winter 2026 finals at Concordia University: four courses, with exams falling within about two weeks of each other. The page lays out a day-by-day study plan from March 30 to May 1 and keeps track of whether you are keeping up. It works in any web browser with nothing to install, and your progress is saved in that browser.
 
 ## What you can do with it
 
